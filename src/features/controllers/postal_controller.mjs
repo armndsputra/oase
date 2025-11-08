@@ -7,7 +7,7 @@ export const fetchAll = async ( req, res ) => {
     try {
 
         // 1. fetch all
-        const results = await Blogs.find().exec()
+        const results = await Blogs.find().skip(req.data.offset).limit(req.data.limit).exec()
 
         // 2. print results
         if (results) {

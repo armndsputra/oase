@@ -1,7 +1,7 @@
 import  express  from 'express'
 const router = express()
 
-// Controllers
+// controllers
 import { 
   fetchAll, 
   saveToDatabase, 
@@ -11,18 +11,19 @@ import {
   fetchDataByKeywords
 } from '../../controllers/postal_controller.mjs'
 
-// Local helpers
+// local helpers
 import { upload } from './helpers/_set_multer.mjs';
 
-// Local middleware
+// local middleware
 import { bridgeToDatabase } from './middleware/pre-processing/bridgeToDatabase.mjs'
 import { bridgeToUpdate } from  './middleware/pre-processing/bridgeToUpdate.mjs'
 import { bridgeToDelete } from './middleware/pre-processing/bridgeToDelete.mjs'
 import { bridgeFetchDataByID } from './middleware/pre-processing/bridgeToFetchDataByID.mjs'
 import { bridgeFetchDataByKeywords} from './middleware/pre-processing/bridgeToFetchDataByKeywords.mjs'
+import { bridgeFetchAll } from './middleware/pre-processing/bridgeToFetchAll.mjs';
 
 // fetch all
-router.get('/', fetchAll)
+router.get('/', bridgeFetchAll, fetchAll)
 
 // save
 router.post('/',upload.array('thumbnail'), bridgeToDatabase, saveToDatabase)
