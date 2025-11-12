@@ -29,9 +29,9 @@ export const bridgeToDatabase = async ( req, res, next ) => {
         if (!errors.isEmpty()) {
             // remove files
             await __file_remove(thumbnailPaths).then(result => {
-                    console.log('Operation result:', result)
+                    console.log('operation result:', result)
                 }).catch(error => {
-                    console.error('Operation failed:', error)
+                    console.error('operation failed:', error)
                 });
 
             console.error('validation errors :', errors.array())

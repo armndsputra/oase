@@ -1,12 +1,13 @@
 import  express  from 'express'
 const router = express()
 
-// Controllers
+// controllers
 import { register } from '../../controllers/user_controller.mjs'
 
-// Manual Middleware
+// local middleware
+import { bridgeToUser } from './middleware/pre-processing/brigdeToUser.mjs'
 
 // Register
-router.get('/register', register)
+router.post('/register', bridgeToUser, register)
 
 export default router

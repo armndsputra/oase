@@ -28,7 +28,7 @@ export const bridgeFetchAll = async ( req, res, next ) => {
 
     } catch (err) {
         // handle error
-        console.error(err)
+        // console.error(err)
         if (err.message === 'NOT_NUMBER' || 'NEGATIVE_VALUES_NOT_ALLOWED') {
             return res.status(400).json({
                 error: 'limit & offset have to number and positive number!'

@@ -6,7 +6,9 @@ const setSchema = new Schema({
     username : { type : String, required: true },
     email : { type : String, required: true },
     password : { type : String, required: true },
-    photo : { type : String, required: true },
+    avatar : { type : String, required: true },
+    gender : { type : String, required: true },
+    birthday : { type : String, required: true },
     created : { type : Date, required : true },
 })
 
