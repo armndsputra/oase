@@ -4,12 +4,12 @@ import { body, validationResult } from 'express-validator'
 // model
 import User from '../../../../models/user_model.mjs'
 
-export const bridgeToUser = async ( req, res, next ) => {
+export const bridgeToRegister = async ( req, res, next ) => {
 
     try {
 
         // 1. fetch all data
-        const { name, username, email, password, gender, birthday } = req.body
+        const { name, username, confirm_password, email, password, gender, birthday } = req.body
 
         // 2.1 check the sent data and validation rules
         await Promise.all([
@@ -17,6 +17,7 @@ export const bridgeToUser = async ( req, res, next ) => {
                 body('username').notEmpty().withMessage('username is required!').run(req),
                 body('email').notEmpty().withMessage('email is required!').run(req),
                 body('password').notEmpty().withMessage('password is required!').run(req),
+                body('confirm_password').notEmpty().withMessage('birthday is required!').run(req),
                 body('birthday').notEmpty().withMessage('birthday is required!').run(req)
             ])
 
@@ -40,6 +41,11 @@ export const bridgeToUser = async ( req, res, next ) => {
             return res.status(409).json({ 
                 message: `${conflictField} already registered` 
             });
+        }
+
+        // 3.1 check confirmation password
+        if ( password !== confirm_password) {
+            return res.status(202).json({ message : 'password is not match!'})
         }
 
         // 4. data has been verified

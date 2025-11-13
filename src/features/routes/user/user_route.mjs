@@ -2,12 +2,20 @@ import  express  from 'express'
 const router = express()
 
 // controllers
-import { register } from '../../controllers/user_controller.mjs'
+import { register, fetchAllUser, deleteToUser } from '../../controllers/user_controller.mjs'
 
 // local middleware
-import { bridgeToUser } from './middleware/pre-processing/brigdeToUser.mjs'
+import { bridgeToRegister } from './middleware/pre-processing/brigdeToRegister.mjs'
+import { bridgeToFetchAllUser } from './middleware/pre-processing/bridgeToFetchAllUser.mjs'
+import { bridgeToDeleteUser } from './middleware/pre-processing/bridgeToDeleteUser.mjs'
 
-// Register
-router.post('/register', bridgeToUser, register)
+// fetch all user
+router.get('/', bridgeToFetchAllUser, fetchAllUser)
+
+// register
+router.post('/register', bridgeToRegister, register)
+
+// delete user
+router.delete('/:id', bridgeToDeleteUser, deleteToUser)
 
 export default router
