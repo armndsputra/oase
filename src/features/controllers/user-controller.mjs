@@ -1,5 +1,5 @@
 // Model
-import Users from '../models/user_model.mjs'
+import Users from '../models/user-model.mjs'
 
 // register
 export const register = async ( req, res, next ) => {

@@ -4,7 +4,7 @@ import { body, validationResult } from 'express-validator'
 import { __file_remove } from "../../../../../helpers/__file_remove.mjs";
 
 // Model
-import Blogs from '../../../../models/postal_model.mjs'
+import Blogs from '../../../../models/postal-model.mjs'
 
 export const bridgeToDatabase = async ( req, res, next ) => {
 

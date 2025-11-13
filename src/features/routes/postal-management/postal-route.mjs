@@ -9,13 +9,20 @@ import {
   updateToDatabase, 
   fetchDataByID,
   fetchDataByKeywords
-} from '../../controllers/postal_controller.mjs'
+} from '../../controllers/postal-controller.mjs'
 
-// local helpers
+// route helpers
 import { upload } from './helpers/_set_multer.mjs';
 
-// local middleware
-import { bridgeToDatabase, bridgeToUpdate,  bridgeFetchAll, bridgeFetchDataByID, bridgeToDelete, bridgeFetchDataByKeywords } from './middleware/main.mjs'
+// route middleware
+import {
+  bridgeToDatabase,
+  bridgeToUpdate,
+  bridgeFetchAll,
+  bridgeFetchDataByID,
+  bridgeToDelete,
+  bridgeFetchDataByKeywords
+} from './middleware/main.mjs'
 
 // fetch all
 router.get('/', bridgeFetchAll, fetchAll)

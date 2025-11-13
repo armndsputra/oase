@@ -1,5 +1,5 @@
 // Model
-import Blogs from '../models/postal_model.mjs'
+import Blogs from '../models/postal-model.mjs'
 
 // find All data
 export const fetchAll = async ( req, res ) => {

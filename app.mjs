@@ -11,8 +11,8 @@ import 'dotenv/config'
 import './configs/database.mjs'
 
 // Routes
-import postal from'./src/features/routes/postal_management/postal_route.mjs'
-import user from'./src/features/routes/user/user_route.mjs'
+import postal from'./src/features/routes/postal-management/postal-route.mjs'
+import user from'./src/features/routes/user/user-route.mjs'
 
 app.use(morgan('dev'))
 app.use(urlencoded({ extended: true }))

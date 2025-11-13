@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-import User from '../../../../models/user_model.mjs'
+import User from '../../../../models/user-model.mjs'
 
 export const bridgeToDeleteUser = async ( req, res, next ) => {
 

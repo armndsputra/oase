@@ -2,7 +2,7 @@
 import { body, validationResult } from 'express-validator'
 
 // model
-import User from '../../../../models/user_model.mjs'
+import User from '../../../../models/user-model.mjs'
 
 export const bridgeToRegister = async ( req, res, next ) => {
 
