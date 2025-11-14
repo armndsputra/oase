@@ -4,13 +4,9 @@ const app = express()
 import morgan from 'morgan'
 import pkg from 'body-parser'
 const {urlencoded , json} = pkg
-
 import 'dotenv/config'
 
-// Database Connection
-import './configs/database.mjs'
-
-// Routes
+// routes
 import postal from'./src/features/routes/postal-management/postal-route.mjs'
 import user from'./src/features/routes/user/user-route.mjs'
 
@@ -18,12 +14,11 @@ app.use(morgan('dev'))
 app.use(urlencoded({ extended: true }))
 app.use(json())
 
-
-// Routes
+// routes
 app.use('/postal', postal)
 app.use('/user', user)
 
-// Error Handling
+// error handling
 app.use((req, res, next) => {
     const error = new Error('The page you are looking for was not found')
     error.status = 404
