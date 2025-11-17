@@ -10,6 +10,7 @@ import 'dotenv/config'
 import postal from'./src/features/routes/postal-management/postal-route.mjs'
 import user from'./src/features/routes/user/user-route.mjs'
 import register from './src/features/routes/user/register-route.mjs'
+import login from './src/features/routes/user/login-route.mjs'
 
 app.use(morgan('dev'))
 app.use(urlencoded({ extended: true }))
@@ -20,6 +21,7 @@ app.use('/postal', postal)
 
 app.use('/user', user)
 app.use('/register', register)
+app.use('/login', login)
 
 // error handling
 app.use((req, res, next) => {

@@ -2,7 +2,6 @@ export const verifyFetchAllUserData = async ( req, res, next ) => {
 
     try {
 
-        console.log('ok')
         next()
 
     } catch (err) {
