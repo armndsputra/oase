@@ -17,11 +17,11 @@ export const loginAccess = async (req, res ,next) => {
             if (err) {
                 // 3.1 if token is expired next to login page
                 // console.error(err)
-                console.error('token verification failed:', err.message)
+                console.error('token verification failed : ', err.message)
                 return next()
             }
             // 3.2 if token actice don't next to login page
-            return res.status(403).json({ message : 'access token is active', user: decode })
+            return res.status(200).json({ message : 'access token is active and valid', user: decode })
         })
 
     } catch (err) {

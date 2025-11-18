@@ -7,10 +7,13 @@ import { fetchAllUser, deleteUser } from '../../controllers/user-controller.mjs'
 // middleware
 import { verifyDeleteUserData, verifyFetchAllUserData } from './middleware/index.mjs'
 
+// service
+import { deleteAccess } from '../../service/deleteAccess.mjs'
+
 // fetch all user
 router.get('/', verifyFetchAllUserData, fetchAllUser)
 
 // delete user
-router.delete('/:id', verifyDeleteUserData, deleteUser)
+router.delete('/:id', deleteAccess, verifyDeleteUserData, deleteUser)
 
 export default router

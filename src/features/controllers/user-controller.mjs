@@ -20,7 +20,9 @@ export const register = async ( req, res, next ) => {
                     email : result.email,
                     gender: result.gender,
                     birhtday: result.birthday,
-                    avatar : result.avatar
+                    avatar : result.avatar,
+                    role : result.role,
+                    created : result.created
                  }
             })
         }
@@ -57,6 +59,7 @@ export const fetchAllUser = async ( req, res ) => {
                         gender : e.gender,
                         birthday : e.birthday,
                         avatar : e.avatar,
+                        role : e.role,
                         created : e.created
                     }
                 })

@@ -52,7 +52,18 @@ export const verifyRegisterData = async ( req, res, next ) => {
         const hashedPassword = await bcrypt.hash(password, saltRoundes)
 
         // 5. data has been verified
-        const data = { name, username, email, password : hashedPassword, gender, birthday, created : new Date(), avatar : 'default' }
+        const data = { 
+            name, 
+            username, 
+            email, 
+            password : hashedPassword, 
+            gender, 
+            birthday, 
+            created : new Date(), 
+            avatar : 'default',
+            role : 'user'
+        }
+
         req.data = data
         next()
 

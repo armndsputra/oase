@@ -42,6 +42,7 @@ export const verifyLoginData = async ( req, res, next ) => {
         // 5. data has been verified
         const data = {
             id : user._id.toString(),
+            role : user.role,
             password : user.password,
             tempPassword : password
         }
