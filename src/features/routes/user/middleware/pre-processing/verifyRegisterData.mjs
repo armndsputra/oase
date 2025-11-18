@@ -1,5 +1,6 @@
 // npm package manager
 import { body, validationResult } from 'express-validator'
+import bcrypt from "bcrypt"
 
 // model
 import User from '../../../../models/user-model.mjs'
@@ -46,8 +47,12 @@ export const verifyRegisterData = async ( req, res, next ) => {
             return res.status(202).json({ message : 'password is not match!'})
         }
 
-        // 4. data has been verified
-        const data = { name, username, email, password, gender, birthday, created : new Date(), avatar : 'default' }
+        // 4. hash password
+        const saltRoundes = 12
+        const hashedPassword = await bcrypt.hash(password, saltRoundes)
+
+        // 5. data has been verified
+        const data = { name, username, email, password : hashedPassword, gender, birthday, created : new Date(), avatar : 'default' }
         req.data = data
         next()
 

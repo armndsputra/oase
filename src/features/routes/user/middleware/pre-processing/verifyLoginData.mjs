@@ -33,23 +33,27 @@ export const verifyLoginData = async ( req, res, next ) => {
             });
         }
 
+        // 4. check account exists
         const user = await Users.findOne({ email }).exec()
         if (!user) {
             return res.status(400).json({ message: "Your email isn't exists !" })
         }
 
+        // 5. data has been verified
         const data = {
             id : user._id.toString(),
             password : user.password,
             tempPassword : password
         }
-        
-        // 4. data is verified
         req.data = data
         next()
 
     } catch (err) {
-
+        // handle errors
+        console.log(err)
+        res.status(500).json({
+            message : 'Error system !',
+        })
     }
 
 }
