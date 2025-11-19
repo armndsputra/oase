@@ -15,8 +15,13 @@
 3. > npm start
    ---
 ### Register
+<<<<<<< HEAD
 - `POST /register` - Register
   
+=======
+
+- `POST /register` - Register User
+>>>>>>> 246dc4b448a6da308899aabb077d4ebc53e72b1a
   ```json
   {
     "name" : "my name", // required | 
