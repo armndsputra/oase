@@ -2,7 +2,7 @@ import  express  from 'express'
 const router = express()
 
 // controllers
-import { fetchAllUser, deleteUser } from '../../controllers/userController.mjs'
+import { fetchAllUser, deleteUser, updateUser } from '../../controllers/userController.mjs'
 
 // middleware
 import { verifyDeleteUserData, verifyFetchAllUserData, verifyUpdateUserData } from './middleware/index.mjs'
@@ -19,7 +19,7 @@ import { upload } from './helpers/_set_multer.mjs'
 router.get('/', fetchAccessUser, verifyFetchAllUserData, fetchAllUser)
 
 // update user
-router.patch('/:id', upload.array('avatar'), verifyUpdateUserData)
+router.patch('/:id', upload.array('avatar'), verifyUpdateUserData, updateUser)
 
 // delete user
 router.delete('/:id', deleteAccessUser, verifyDeleteUserData, deleteUser)

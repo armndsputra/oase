@@ -108,3 +108,33 @@ export const deleteUser =  async ( req, res ) => {
     }
 
 }
+
+// update user
+export const updateUser = async ( req, res ) => {
+
+    try {
+
+        // 1. update data by ID
+        const data = await Users.findByIdAndUpdate(req.id, req.data, { new: true })
+        
+        // 2. print the result
+        return res.status(201).json({
+            message : 'success',
+            print : {
+                user : data.username,
+                gender : data.gender,
+                birthday : data.birthday,
+                created : data.created,
+                avatar : data.avatar,
+            }
+        })
+
+    } catch (err) {
+        // handle errors
+        console.log(err)
+        return res.status(500).json({ 
+            message : 'error system !'
+         })
+    }
+
+}

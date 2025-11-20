@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 
 // helper
-import { __file_remove } from "../../../../../helpers/__file_remove.mjs";
+import { __file_remove } from "../../../../../helpers/__file_remove.mjs"
 
 // model
 import Contents from '../../../../models/postalModel.mjs'
