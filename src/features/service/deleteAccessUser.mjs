@@ -13,7 +13,7 @@ export const deleteAccessUser = async ( req, res, next ) => {
                 
         // 2. check if token is undifind
         if (!token) {
-            return res.status(403).json({ message : 'access token failed!'})
+            return res.status(403).json({ message : 'forbidden : authentication required!'})
         }
         
         // 3. verify token jwt
@@ -23,16 +23,16 @@ export const deleteAccessUser = async ( req, res, next ) => {
                 // console.error(err)
                 console.error('token verification failed : ', err.message)
                 return res.status(400).json({
-                    message : 'access token has been expired!'
+                    message : 'forbidden : access token has been expired!'
                 })
             }
             // 3.2 if token active next to delete access
             console.table(decode)
             if (decode.role === 'admin') {
-                req.decode
+                req.decode = decode
                 return next()
             } else
-            return res.status(403).json({ message : 'forbiden access!'})
+            return res.status(403).json({ message : 'forbidden : access is restricted!'})
         })
 
     } catch (err)  {

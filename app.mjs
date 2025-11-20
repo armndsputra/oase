@@ -25,7 +25,7 @@ app.use('/login', login)
 
 // error handling
 app.use((req, res, next) => {
-    const error = new Error('The page you are looking for was not found')
+    const error = new Error('the page you are looking for was not found')
     error.status = 404
     next(error)
 })

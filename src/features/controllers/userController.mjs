@@ -80,14 +80,22 @@ export const deleteUser =  async ( req, res ) => {
 
     try {
 
-        // 1. remove data by ID
-        const result = await Users.deleteOne({_id : req.data._id}).exec()
+        const { id } = req.data
 
-        // 2. print result data
-        if (result) {
+        // 1. delete user by ID
+        const user = await Users.findByIdAndDelete(id)
+        console.log(user)
+
+        // 2. print user
+        if (user) {
             return res.status(200).json({
-                message : 'deleted',
-                deleted : result.deletedCount
+                message : 'the user has been successfully deleted',
+                deleted : {
+                    id : user._id,
+                    name : user.name,
+                    user : user.username,
+                    email : user.email
+                }
             })
         }
 
@@ -95,7 +103,7 @@ export const deleteUser =  async ( req, res ) => {
         // handle errors
         console.log(err)
         return res.status(500).json({ 
-            message : 'Error system !'
+            message : 'error system !'
          })
     }
 
