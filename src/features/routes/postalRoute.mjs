@@ -1,5 +1,5 @@
-import  express  from 'express'
-const router = express()
+import  { Router }  from 'express'
+const router = Router()
 
 // controllers
 import { 
