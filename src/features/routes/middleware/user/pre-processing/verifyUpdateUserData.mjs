@@ -4,7 +4,7 @@ import mongoose from "mongoose"
 import User from "../../../../models/userModel.mjs"
 
 // helper
-import { __file_remove } from "../../../../../helpers/__file_remove.mjs";
+import { __file_remove } from "../../../../../helpers/__file_remove.mjs"
 
 export const verifyUpdateUserData = async ( req, res, next) => {
 
@@ -28,9 +28,9 @@ export const verifyUpdateUserData = async ( req, res, next) => {
         if (!mongoose.Types.ObjectId.isValid(id)) {
             // remove files
             await __file_remove(avatarPaths).then(result => {
-                console.log('operation result:', result)
+                console.log('operation result :', result)
             }).catch(error => {
-                console.error('operation failed:', error)
+                console.error('operation failed :', error)
             })
                     
             return res.status(400).json({ message : 'the ID you entered is incorrect!'})
@@ -46,9 +46,9 @@ export const verifyUpdateUserData = async ( req, res, next) => {
         if (avatarPaths.length > 1) {
             // remove files
             await __file_remove(avatarPaths).then(result => {
-                console.log('Operation result:', result)
+                console.log('operation result :', result)
             }).catch(error => {
-                console.error('Operation failed:', error)
+                console.error('operation failed :', error)
             })
             return res.status(413).json({ message : 'only one file is allowed'})
         }
@@ -58,9 +58,9 @@ export const verifyUpdateUserData = async ( req, res, next) => {
         if (avatarPaths.length > 0) {
             // delete old avatar path user
             await __file_remove([user.avatar]).then(result => {
-                console.log('Operation result:', result)
+                console.log('operation result :', result)
             }).catch(error => {
-                console.error('Operation failed:', error)
+                console.error('operation failed :', error)
             })
         }
 
@@ -68,9 +68,9 @@ export const verifyUpdateUserData = async ( req, res, next) => {
         if (_id !== id) {
             // remove files
             await __file_remove(avatarPaths).then(result => {
-                console.log('Operation result:', result)
+                console.log('operation result :', result)
             }).catch(error => {
-                console.error('Operation failed:', error)
+                console.error('operation failed :', error)
             })
             return res.status(403).json({ message : 'forbidden : access is restricted!'})
         }

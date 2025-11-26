@@ -2,6 +2,9 @@ import mongoose from "mongoose";
 
 import User from '../../../../models/userModel.mjs'
 
+// helper
+import { __file_remove } from "../../../../../helpers/__file_remove.mjs"
+
 export const verifyDeleteUserData = async ( req, res, next ) => {
 
     try {
@@ -20,8 +23,15 @@ export const verifyDeleteUserData = async ( req, res, next ) => {
         if (user.role === role) {
             return res.status(403).json({ message : 'forbidden : user is prohibited from being deleted!'})
         }
+
+        // 3. remove old avatar path / file
+        await __file_remove([user.avatar]).then(result => {
+                        console.log('Operation result:', result)
+        }).catch(error => {
+            console.error('Operation failed:', error)
+        })
         
-        // 3. data has been verified
+        // 4. data has been verified
         req.data = user
         next()
 

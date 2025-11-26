@@ -28,7 +28,7 @@
     "gender" : "male",
   }
   ```
-
+---
 ### Login
 - `POST /login` - Login
   
@@ -48,7 +48,7 @@
       "Authorization" : "Bearer "
     }
     ```
-- Bequest body
+- Request body
   ```json
   {
     "name" : "name",
@@ -57,3 +57,5 @@
     "avatar" : "default.jpg" // file
   }
   ```
+  ---
+  [Read Documentation](guide/docs.md)
