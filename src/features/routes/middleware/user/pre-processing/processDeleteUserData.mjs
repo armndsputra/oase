@@ -5,7 +5,7 @@ import User from '../../../../models/userModel.mjs'
 // helper
 import { __file_remove } from "../../../../../helpers/__file_remove.mjs"
 
-export const verifyDeleteUserData = async ( req, res, next ) => {
+export const processDeleteUserData = async ( req, res, next ) => {
 
     try {
 

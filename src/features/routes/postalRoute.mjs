@@ -16,34 +16,34 @@ import { upload } from './middleware/postal/helpers/_set_multer.mjs'
 
 // route middleware
 import {
-  verifyContentData,
-  verifyUpdateContentData,
-  verifyFetchAllContentData,
-  verifyFetchContentDataByID,
-  verifyDeleteContentData,
-  verifyFetchContentDataByKeywords
+  processContentData,
+  processUpdateContentData,
+  processFetchAllContentData,
+  processFetchContentDataByID,
+  processDeleteContentData,
+  processFetchContentDataByKeywords
 } from './middleware/index.mjs'
 
 // service
 import { mainAccessUser } from '../service/mainAccessUser.mjs'
 
 // fetch all
-router.get('/', verifyFetchAllContentData, fetchAllContent)
+router.get('/', processFetchAllContentData, fetchAllContent)
 
 // save
-router.post('/',mainAccessUser, upload.array('thumbnail'), verifyContentData, saveContent)
+router.post('/',mainAccessUser, upload.array('thumbnail'), processContentData, saveContent)
 
 // delete
-router.delete('/:id', mainAccessUser, verifyDeleteContentData, deleteContent)
+router.delete('/:id', mainAccessUser, processDeleteContentData, deleteContent)
 
 // update
-router.patch('/:id', upload.array('thumbnail'), verifyUpdateContentData, updateContent)
+router.patch('/:id', upload.array('thumbnail'), processUpdateContentData, updateContent)
 
 // fetch data by id
-router.get('/:id', verifyFetchContentDataByID, fetchContentByID)
+router.get('/:id', processFetchContentDataByID, fetchContentByID)
 
 // fetch data by keywords
-router.post('/keywords', verifyFetchContentDataByKeywords, fetchContentByKeywords)
+router.post('/keywords', processFetchContentDataByKeywords, fetchContentByKeywords)
 
 // error handling
 router.use((err, req, res, next) => {

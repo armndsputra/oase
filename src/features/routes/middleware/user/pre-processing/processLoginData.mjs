@@ -4,7 +4,7 @@ import { body, validationResult } from 'express-validator'
 // model
 import Users from '../../../../models/userModel.mjs'
 
-export const verifyLoginData = async ( req, res, next ) => {
+export const processLoginData = async ( req, res, next ) => {
 
     try {
 

@@ -5,7 +5,7 @@ const router = Router()
 import { fetchAllUser, deleteUser, updateUser } from '../controllers/userController.mjs'
 
 // middleware
-import { verifyDeleteUserData, verifyFetchAllUserData, verifyUpdateUserData } from './middleware/index.mjs'
+import { processDeleteUserData, processFetchAllUserData, processUpdateUserData } from './middleware/index.mjs'
 
 // service
 import { deleteAccessUser } from '../service/deleteAccessUser.mjs'
@@ -17,12 +17,12 @@ import { upload } from './middleware/user/helpers/_set_multer.mjs'
 
 
 // fetch all user
-router.get('/', fetchAccessUser, verifyFetchAllUserData, fetchAllUser)
+router.get('/', fetchAccessUser, processFetchAllUserData, fetchAllUser)
 
 // update user
-router.patch('/:id',updateAccessUser, upload.array('avatar'), verifyUpdateUserData, updateUser)
+router.patch('/:id',updateAccessUser, upload.array('avatar'), processUpdateUserData, updateUser)
 
 // delete user
-router.delete('/:id', deleteAccessUser, verifyDeleteUserData, deleteUser)
+router.delete('/:id', deleteAccessUser, processDeleteUserData, deleteUser)
 
 export default router

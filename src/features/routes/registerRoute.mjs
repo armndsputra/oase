@@ -5,9 +5,9 @@ const router = Router()
 import { register } from '../controllers/userController.mjs'
 
 // middleware
-import { verifyRegisterData } from './middleware/index.mjs'
+import { processRegisterData } from './middleware/index.mjs'
 
 // register
-router.post('/', verifyRegisterData, register)
+router.post('/', processRegisterData, register)
 
 export default router

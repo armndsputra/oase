@@ -5,7 +5,7 @@ import bcrypt from "bcrypt"
 // model
 import User from '../../../../models/userModel.mjs'
 
-export const verifyRegisterData = async ( req, res, next ) => {
+export const processRegisterData = async ( req, res, next ) => {
 
     try {
 

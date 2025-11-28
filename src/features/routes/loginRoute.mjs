@@ -2,13 +2,13 @@ import  { Router }  from 'express'
 const router = Router()
 
 // middleware
-import { verifyLoginData } from './middleware/index.mjs'
+import { processLoginData } from './middleware/index.mjs'
 
 // service 
 import { login } from '../service/login.mjs'
 import { loginAccess } from '../service/loginAccess.mjs'
 
 // register
-router.post('/', loginAccess, verifyLoginData, login)
+router.post('/', loginAccess, processLoginData, login)
 
 export default router

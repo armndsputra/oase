@@ -6,7 +6,7 @@ import Contents from '../../../../models/postalModel.mjs'
 // helper
 import { __file_remove } from "../../../../../helpers/__file_remove.mjs"
 
-export const verifyDeleteContentData = async ( req, res, next ) => {
+export const processDeleteContentData = async ( req, res, next ) => {
 
     try {
 

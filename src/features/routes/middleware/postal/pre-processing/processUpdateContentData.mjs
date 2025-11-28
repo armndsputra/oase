@@ -6,7 +6,7 @@ import { __file_remove } from "../../../../../helpers/__file_remove.mjs"
 // model
 import Contents from '../../../../models/postalModel.mjs'
 
-export const verifyUpdateContentData = async ( req, res, next ) => {
+export const processUpdateContentData = async ( req, res, next ) => {
 
     const id = req.params.id // id data
     let thumbnailPaths = [] // empy array

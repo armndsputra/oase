@@ -1,4 +1,4 @@
-export const verifyFetchAllUserData = async ( req, res, next ) => {
+export const processFetchAllUserData = async ( req, res, next ) => {
 
     try {
 
