@@ -37,7 +37,7 @@ router.post('/',mainAccessUser, upload.array('thumbnail'), processContentData, s
 router.delete('/:id', mainAccessUser, processDeleteContentData, deleteContent)
 
 // update
-router.patch('/:id', upload.array('thumbnail'), processUpdateContentData, updateContent)
+router.patch('/:id',mainAccessUser, upload.array('thumbnail'), processUpdateContentData, updateContent)
 
 // fetch data by id
 router.get('/:id', processFetchContentDataByID, fetchContentByID)

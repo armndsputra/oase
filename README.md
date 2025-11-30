@@ -14,7 +14,7 @@
  | Role  | Permissions |
 |-------|-------------|
 | ADMIN | delete user, fetch all user |
-| USER  | update user, post content |
+| USER  | update user, post content, update content |
 | GENERAL  | fetch all contents, fetch content by id, fetch content by keywords |
 
 ---
@@ -153,6 +153,7 @@
 ***FEATURE :***
 - [x] `POST /postal` - posting content
 - [x] `DELETE /postal/id_content` - delete content
+- [x] `PATCH /postal/id_content` - update content
 
 ### 1. Posting Content
   - **Endpoint** : `POST /postal`
@@ -189,6 +190,32 @@
     }
   }
    ```
+
+   ### 3. Update Content
+  - **Endpoint** : `PATCH /postal/id_content`
+##### Request Body :
+```json
+{
+  "title" : "--- --- ---",
+  "content" : "--- --- ---",
+  "thumbnail" : "image"
+}
+```
+##### Response Success :
+```json
+{
+    "message": "success",
+    "data": {
+        "id": "--- --- ---",
+        "user": "--- --- ---",
+        "title": "--- --- ---",
+        "content": "---",
+        "thumbnail": "uploads/contents/--- ---- ---",
+        "created": "00-00-000"
+    }
+}
+```
+
 
 ## GENERAL ACCESS
 ***FEATURE :***

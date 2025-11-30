@@ -13,6 +13,10 @@ export const processUpdateContentData = async ( req, res, next ) => {
 
     try {
 
+        if (!req.body) {
+            return res.status(400).json({ message : 'no data provided!'})
+        }
+
         // 1. validasi ID
         if (!mongoose.Types.ObjectId.isValid(id)) {
             // remove files
@@ -42,7 +46,29 @@ export const processUpdateContentData = async ( req, res, next ) => {
             return res.status(404).json({ message : 'data not found!'})
         }
 
-        // 4. Handle thumbnail update
+        // MAIN ACCESS USER
+        if (req.decode.id !== result.user) {
+            // remove files
+            await __file_remove(thumbnailPaths).then(result => {
+                    console.log('operation result:', result)
+                }).catch(error => {
+                    console.error('operation failed:', error)
+                });
+            return res.status(403).json({ message : 'forbidden : access is restricted!'})
+        }
+
+        // 5. validate thumbnail file count
+        if (thumbnailPaths.length > 1) {
+            // remove files
+            await __file_remove(thumbnailPaths).then(result => {
+                    console.log('Operation result:', result)
+                }).catch(error => {
+                    console.error('Operation failed:', error)
+                });
+            return res.status(413).json({ message : 'only one file is allowed'})
+        }
+
+        // 6. Handle thumbnail update
         const oldThumbnailPath = result.thumbnail
         let finalThumbnailPath
         if (req.files && req.files.length > 0) {
@@ -58,21 +84,20 @@ export const processUpdateContentData = async ( req, res, next ) => {
             finalThumbnailPath = oldThumbnailPath
         }
 
-        // 5. prepare update data
+        // 7. prepare update data
         const data = {
             title : req.body.title || result.title,
             content : req.body.content || result.content,
             thumbnail : finalThumbnailPath
         }
 
-        // 6. data has been verified
+        // 8. data has been verified
         req.id = id
         req.data = data
         console.table(data)
         next()
 
     } catch (err) {
-
         // handle errors
         console.error(err)
         res.status(500).send({ 

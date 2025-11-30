@@ -107,6 +107,7 @@ export const updateContent = async ( req, res) => {
         return res.status(201).json({
             message : 'success',
             data : {
+                id : result._id,
                 user : result.user,
                 title : result.title,
                 content : result.content,
