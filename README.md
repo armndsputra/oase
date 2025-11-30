@@ -1,4 +1,5 @@
-## `OASE` `Personal` `Website`
+# `O A S E` 
+*a framework for creating a simple weblog. such as posting articles, stories, and tutorials*
 
 | Layer | Technology |
 |-|-|
@@ -9,11 +10,11 @@
 
 # Authentication & User Management API
 ## Overview
-*API for user management with role-based authentication and authorization system ( Admin/User )*
+*API for user management with role-based authentication and authorization system ( admin & user )*
 ### Role-based Features
  | Role  | Permissions |
 |-------|-------------|
-| ADMIN | delete user, fetch all user |
+| ADMIN | delete user, fetch all user, fetch user by ID |
 | USER  | update user, post content, update content |
 | GENERAL  | fetch all contents, fetch content by id, fetch content by keywords |
 
@@ -97,6 +98,7 @@
 ***FEATURE :***
 - [x] `GET /user` - fetch all user
 - [x] `DELETE /user/id_user` - delete user
+- [x] `GET /user/id_user` - fetch user by ID
 
 
 ### 1. Fetch All User
@@ -139,14 +141,29 @@
     {
         "message": "the user has been successfully deleted",
         "deleted": {
-            "id": "***",
-            "name": "***",
-            "user": "***",
-            "email": " ***@mail.com"
+            "id": "-------",
+            "name": "--- --- ---",
+            "user": "user",
+            "email": "------@mail.com"
         }
     }
 ```
-
+### 3. Fetch User By ID
+- **Endpoint** : `GET /user/id_user`
+##### Response Success :
+```json
+{
+    "message": "success",
+    "data": {
+        "id": "692699b11ddb0f69336fd4fd",
+        "email": "example@mail.com",
+        "gender": "famele",
+        "birthday": "28-01-1997",
+        "role": "user",
+        "created": "2025-11-26T06:09:53.239Z"
+    }
+}
+```
 
 
 ## USER ACCESS
@@ -295,3 +312,12 @@
     ]
 }
 ```
+---
+
+## Other Features
+***ADMIN :***
+- [ ] `GET /` - 
+
+  
+***USER :***
+- [ ] `GET /postal/id_user` - fetch all content by user ID 

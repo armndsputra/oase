@@ -138,3 +138,46 @@ export const updateUser = async ( req, res ) => {
     }
 
 }
+
+// fetch user by ID
+export const fetchUserByID = async ( req, res ) => {
+
+    const id = req.id
+
+    try {
+
+        // 1. fetch data by ID
+        const result = await Users.findById({_id : id}).exec()
+        console.log(result)
+
+        // 2. print data
+        if (result) return res.status(200).json({
+            message : 'success',
+            data : {
+                id : result._id,
+                user : result.user,
+                email : result.email,
+                gender : result.gender,
+                birthday : result.birthday,
+                role : result.role,
+                created : result.created,
+            }
+        })
+        
+        // 2.1 if data not found
+        if (!result) return res.status(200).json({
+            message : 'success',
+            data : []
+        })
+
+        return
+
+    } catch (err) {
+        // handle errors
+        console.log(err)
+        return res.status(500).json({ 
+            message : 'error system !'
+         })
+    }
+
+}
