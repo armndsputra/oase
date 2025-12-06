@@ -38,31 +38,33 @@
   ##### Request Body :
   ```json
   {
-    "name" : "--- --- ---", // required
-    "username" : "------", // required
-    "email" : "------@mail.com", // required
-    "password" : "------", // required
-    "confirm_password" : "------", // required
-    "birthday" : "00-00-0000", // required
-    "gender" : "------", // required 
+    "name" : "adipati suryanegara", // required
+    "username" : "adipati", // required
+    "email" : "adipati@mail.com", // required
+    "password" : "admin", // required
+    "confirm_password" : "admin", // required
+    "birthday" : "12-13-1997", // required
+    "gender" : "laki-laki", // required 
   }
   ```
 
   ##### Response Success :
   ```json
     {
-    "message": "succed",
-        "data": {
-            "name": "--- --- ---",
-            "username": "------",
-            "email": "------@mail.com",
-            "birhtday": "00-00-0000",
-            "gender": "famele",
-            "avatar": "default.jpg",
-            "role": "user", // default role
-            "created": "--- --- ---"
-        }
+    "success": true,
+    "message": "success : user has successfully registered",
+    "data": {
+        "name": "adipati suryanegara",
+        "username": "adipati",
+        "email": "adipati@gmail.com",
+        "password": "*********",
+        "gender": "laki-laki",
+        "birhtday": "12-13-1997",
+        "avatar": "default",
+        "role": "user",
+        "created": "2025-12-06T02:14:17.840Z"
     }
+  }
   ```
 
 

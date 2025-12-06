@@ -1,29 +1,33 @@
-// Model
+// model
 import Users from '../models/userModel.mjs'
 
+// ------------------------------------------------------------------------
 // register
+// ------------------------------------------------------------------------
 export const register = async ( req, res, next ) => {
 
     try {
 
         // 1. save a single document
         const user = new Users(req.data)
-        const result = await user.save()
+        const data = await user.save()
 
-        // 2. print the results
-        if (result) {
+        // 2. print user data
+        if (data) {
             return res.status(201).json({
-                message : 'succed',
+                success : true,
+                message : 'success : user has successfully registered',
                  data : {
-                    name : result.name,
-                    username : result.username,
-                    email : result.email,
-                    gender: result.gender,
-                    birhtday: result.birthday,
-                    avatar : result.avatar,
-                    role : result.role,
-                    created : result.created
-                 }
+                    name : data.name,
+                    username : data.username,
+                    email : data.email,
+                    password : "*********",
+                    gender: data.gender,
+                    birhtday: data.birthday,
+                    avatar : data.avatar,
+                    role : data.role,
+                    created : data.created
+                }
             })
         }
 
@@ -32,13 +36,15 @@ export const register = async ( req, res, next ) => {
         // handle errors
         console.log(err)
         return res.status(500).json({ 
-            message : 'Error system !'
+            message : 'error system!'
          })
     }
 
 }
 
+// ------------------------------------------------------------------------
 // fetch all user
+// ------------------------------------------------------------------------
 export const fetchAllUser = async ( req, res ) => {
 
     try {
@@ -49,7 +55,7 @@ export const fetchAllUser = async ( req, res ) => {
         // 2. print results
         if (results) {
             return res.status(200).json({
-                 message : 'success',
+                 message : 'success : user successfully displayed',
                 data : results.map(e => {
                     return {
                         id : e._id,
@@ -70,12 +76,14 @@ export const fetchAllUser = async ( req, res ) => {
         // handle errors
         console.error(err)
         return res.status(500).json({
-            message : 'Error system !',
+            message : 'error system!',
         })
     }
 }
 
+// ------------------------------------------------------------------------
 // delete user
+// ------------------------------------------------------------------------
 export const deleteUser =  async ( req, res ) => {
 
     try {
@@ -83,18 +91,18 @@ export const deleteUser =  async ( req, res ) => {
         const { id } = req.data
 
         // 1. delete user by ID
-        const user = await Users.findByIdAndDelete(id)
-        console.log(user)
+        const data = await Users.findByIdAndDelete(id)
+        console.log(data)
 
-        // 2. print user
-        if (user) {
+        // 2. print user data
+        if (data) {
             return res.status(200).json({
-                message : 'the user has been successfully deleted',
-                deleted : {
-                    id : user._id,
-                    name : user.name,
-                    user : user.username,
-                    email : user.email
+                message : 'success : the user has been successfully deleted',
+                data : {
+                    id : data._id,
+                    name : data.name,
+                    username : data.username,
+                    email : data.email
                 }
             })
         }
@@ -103,13 +111,15 @@ export const deleteUser =  async ( req, res ) => {
         // handle errors
         console.log(err)
         return res.status(500).json({ 
-            message : 'error system !'
+            message : 'error system!'
          })
     }
 
 }
 
+// ------------------------------------------------------------------------
 // update user
+// ------------------------------------------------------------------------
 export const updateUser = async ( req, res ) => {
 
     try {
@@ -119,8 +129,8 @@ export const updateUser = async ( req, res ) => {
         
         // 2. print the result
         return res.status(201).json({
-            message : 'success',
-            print : {
+            message : 'success : user successfully updated',
+            data : {
                 user : data.name,
                 gender : data.gender,
                 birthday : data.birthday,
@@ -139,7 +149,9 @@ export const updateUser = async ( req, res ) => {
 
 }
 
+// ------------------------------------------------------------------------
 // fetch user by ID
+// ------------------------------------------------------------------------
 export const fetchUserByID = async ( req, res ) => {
 
     const id = req.id
@@ -147,25 +159,25 @@ export const fetchUserByID = async ( req, res ) => {
     try {
 
         // 1. fetch data by ID
-        const result = await Users.findById({_id : id}).exec()
-        console.log(result)
+        const data = await Users.findById({_id : id}).exec()
+        console.log(data)
 
         // 2. print data
-        if (result) return res.status(200).json({
-            message : 'success',
+        if (data) return res.status(200).json({
+            message : 'success : user is displayed by ID',
             data : {
-                id : result._id,
-                user : result.user,
-                email : result.email,
-                gender : result.gender,
-                birthday : result.birthday,
-                role : result.role,
-                created : result.created,
+                id : data._id,
+                user : data.user,
+                email : data.email,
+                gender : data.gender,
+                birthday : data.birthday,
+                role : data.role,
+                created : data.created,
             }
         })
         
         // 2.1 if data not found
-        if (!result) return res.status(200).json({
+        if (!data) return res.status(200).json({
             message : 'success',
             data : []
         })
@@ -176,7 +188,7 @@ export const fetchUserByID = async ( req, res ) => {
         // handle errors
         console.log(err)
         return res.status(500).json({ 
-            message : 'error system !'
+            message : 'error system!'
          })
     }
 

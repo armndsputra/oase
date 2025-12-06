@@ -1,7 +1,9 @@
 // Model
 import Contents from '../models/postalModel.mjs'
 
-// find All data
+// --------------------------------------------------------------------------------------
+// fatch all content data
+// --------------------------------------------------------------------------------------
 export const fetchAllContent = async ( req, res ) => {
     
     try {
@@ -35,7 +37,9 @@ export const fetchAllContent = async ( req, res ) => {
     }
 }
 
-// save
+// --------------------------------------------------------------------------------------
+//  save content data
+// --------------------------------------------------------------------------------------
 export const saveContent = async ( req, res ) => {
     
     try {
@@ -66,7 +70,9 @@ export const saveContent = async ( req, res ) => {
     }
 }
 
-// remove data
+// --------------------------------------------------------------------------------------
+// remove content data
+// --------------------------------------------------------------------------------------
 export const deleteContent = async ( req, res) => {
 
      try {
@@ -97,7 +103,9 @@ export const deleteContent = async ( req, res) => {
     }
 }
 
-// edit / update data
+// --------------------------------------------------------------------------------------
+// edit / update content data
+// --------------------------------------------------------------------------------------
 export const updateContent = async ( req, res) => {
 
     try {
@@ -128,7 +136,9 @@ export const updateContent = async ( req, res) => {
 
 }
 
-// fetch data by id
+// --------------------------------------------------------------------------------------
+// fetch content data by id
+// --------------------------------------------------------------------------------------
 export const fetchContentByID = async ( req, res ) => {
 
     const id = req.id
@@ -170,7 +180,9 @@ export const fetchContentByID = async ( req, res ) => {
 
 }
 
-// fetch data by keywords
+// --------------------------------------------------------------------------------------
+// fetch content data by keywords
+// --------------------------------------------------------------------------------------
 export const fetchContentByKeywords = async ( req, res, next ) => {
 
     const keywords = req.keywords
@@ -209,7 +221,7 @@ export const fetchContentByKeywords = async ( req, res, next ) => {
         // handle errors
         console.error(err)
         res.status(500).json({
-            message : 'Error system !',
+            message : 'error system!',
         })
     }
 
