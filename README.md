@@ -30,7 +30,7 @@
     JWT_KEY = ''
    ```
   
-3. > npm start | npm run dev
+3. > npm start
 ---
 
 ### Register
@@ -186,7 +186,7 @@
   ```json
   {
     "title" : "pulang",
-    "content" : "",
+    "content" : "******************",
     "thumbnail" : "image.jpg"
   }
   ```
@@ -198,7 +198,7 @@
     "data": {
         "id": "6934cfea1bc8dcb6ed9b5f32",
         "title": "pulang",
-        "content": "-",
+        "content": "*****************",
         "thumbnail": "uploads/contents/2025-12-07T00:52:58.011Z-151619766.jpeg",
         "created": "2025-12-07T00:52:58.016Z",
         "author": {
@@ -232,22 +232,26 @@
 ##### Request Body :
 ```json
 {
-  "title" : "--- --- ---",
-  "content" : "--- --- ---",
+  "title" : "",
+  "content" : "dikampung yang sepi",
   "thumbnail" : "image"
 }
 ```
 ##### Response Success :
 ```json
 {
-    "message": "success",
+    "success": true,
+    "message": "success : content successfully updated",
     "data": {
-        "id": "--- --- ---",
-        "user": "--- --- ---",
-        "title": "--- --- ---",
-        "content": "---",
-        "thumbnail": "uploads/contents/--- ---- ---",
-        "created": "00-00-000"
+        "id": "6934d128ecdef486863838c4",
+        "title": "pulang",
+        "content": "dikampung yang sepi",
+        "thumbnail": "uploads/contents/2025-12-07T01:57:42.275Z-538175537.jpeg",
+        "created": "2025-12-07T00:58:16.444Z",
+        "author": {
+            "_id": "6934ce33d68123091a3908f0",
+            "name": "adipati suryanegara"
+        }
     }
 }
 ```
@@ -272,18 +276,18 @@
 
 ```json
 {
-    "message": "success",
+    "success": true,
+    "message": "success : content successfully displayed",
     "data": [
         {
-            "id": "------",
-            "user": "------",
-            "title": "--- --- ---",
-            "content": "--- --- ---",
-            "thubnail": "uploads/contents/------",
-            "created": "--- --- ---",
+            "id": "6934d128ecdef486863838c4",
+            "title": "pulang",
+            "content": "**********",
+            "thubnail": "uploads/contents/2025-12-07T01:57:42.275Z-538175537.jpeg",
+            "created": "2025-12-07T00:58:16.444Z",
             "author": {
-                "_id": "---------",
-                "name": "--- --- ---"
+                "_id": "6934ce33d68123091a3908f0",
+                "name": "adipati suryanegara"
             }
         }
     ]
@@ -295,14 +299,18 @@
 ##### Response Success :
 ```json
 {
-    "message": "success",
+    "success": true,
+    "message": "success : content is displayed by ID",
     "data": {
-        "id": "------",
-        "user": "------",
-        "title": "--- --- ---",
-        "content": "--- --- ---",
-        "thubnail": "uploads/contents/------",
-        "created": "--- --- ---",
+        "id": "6934d128ecdef486863838c4",
+        "title": "pulang",
+        "content": "dikampung yang sepi",
+        "thumbnail": "uploads/contents/2025-12-07T01:57:42.275Z-538175537.jpeg",
+        "created": "2025-12-07T00:58:16.444Z",
+        "author": {
+            "_id": "6934ce33d68123091a3908f0",
+            "name": "adipati suryanegara"
+        }
     }
 }
 ```
@@ -312,21 +320,25 @@
 ##### Request Body :
 ```json
 {
-  "keywords" : "--- --- ---"
+  "keywords" : "pulang"
 }
 ```
 ##### Response Success : 
 ```json
 {
-    "message": "success",
+    "success": true,
+    "message": "success : content is displayed by keywords",
     "data": [
         {
-        "id": "------",
-        "user": "------",
-        "title": "--- --- ---",
-        "content": "--- --- ---",
-        "thubnail": "uploads/contents/------",
-        "created": "--- --- ---",
+            "id": "6934d128ecdef486863838c4",
+            "title": "pulang",
+            "content": "**********************",
+            "thumbnail": "uploads/contents/2025-12-07T01:57:42.275Z-538175537.jpeg",
+            "created": "2025-12-07T00:58:16.444Z",
+            "author": {
+                "_id": "6934ce33d68123091a3908f0",
+                "name": "adipati suryanegara"
+            }
         }
     ]
 }

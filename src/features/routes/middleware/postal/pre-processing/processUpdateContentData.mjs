@@ -103,7 +103,7 @@ export const processUpdateContentData = async ( req, res, next ) => {
         // handle errors
         console.error(err)
         res.status(500).send({ 
-            message: 'Error system !' 
+            message: 'error system!' 
         })
     }
 

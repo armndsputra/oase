@@ -20,7 +20,7 @@ export const fetchAllContent = async ( req, res ) => {
                     return {
                         id : e._id,
                         title : e.title,
-                        content : e.content,
+                        content : "**********************",
                         thubnail : e.thumbnail,
                         created : e.created,
                         author : e.user,
@@ -160,7 +160,7 @@ export const fetchContentByID = async ( req, res ) => {
             data : {
                 id : data._id,
                 title : data.title,
-                content : data.content,
+                content : "**********************",
                 thumbnail : data.thumbnail,
                 created : data.created,
                 author : data.user,
@@ -215,7 +215,7 @@ export const fetchContentByKeywords = async ( req, res, next ) => {
                     return {
                         id : e._id,
                         title : e.title,
-                        content : e.content,
+                        content : "**********************",
                         thumbnail : e.thumbnail,
                         created : e.created,
                         author : e.user,
