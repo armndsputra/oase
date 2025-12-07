@@ -54,6 +54,7 @@
     "success": true,
     "message": "success : user has successfully registered",
     "data": {
+        "id": "6934cd9cd68123091a3908e9",
         "name": "adipati suryanegara",
         "username": "adipati",
         "email": "adipati@gmail.com",
@@ -74,15 +75,16 @@
 ##### Request Body :
 ```json
 {
-    "email" : "------@mail.com",
-    "password" : "------"
+    "email" : "adipati@mail.com",
+    "password" : "admin"
 }
 ```
 ##### Response Success :
 ```json
 {
+    "success" : true,
     "message": "you have successfully logged in",
-    "access_token": "--- --- --- ---",
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MjY5OTQ5MWRkYjBmNjkzMzZmZDRlZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTA2NDE1MSwiZXhwIjoxNzY1MDY3NzUxfQ.rIlzUeyMrfwLI-cfD6WOJvwAhPUYfR4XEFhECrOzFEM",
     "token_type": "Bearer",
     "expires_in": "1h"
 }
@@ -93,7 +95,7 @@
 ##### Request Header :
 ```json
 {
-    "Authorization" : "Bearer --- --- --- ---" // access token code
+    "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MjY5OTQ5MWRkYjBmNjkzMzZmZDRlZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTA2NDE1MSwiZXhwIjoxNzY1MDY3NzUxfQ.rIlzUeyMrfwLI-cfD6WOJvwAhPUYfR4XEFhECrOzFEM" // access token code
 }
 ```
 ## ADMIN ACCESS
@@ -104,65 +106,69 @@
 
 
 ### 1. Fetch All User
-  - **Endpoint :** `GET /user`
+  - **Endpoint :** `GET /user?limit=0&offset=0`
+    
   ##### Response Success :
   ```json
     {
-    "message": "success",
+    "success": true,
+    "message": "success : user successfully displayed",
     "data": [
         {
-            "id": "-------",
-            "name": "--- --- ---",
-            "username": "------",
-            "email": "------@mail.com",
-            "gender": "female",
-            "birthday": "00-00-0000",
-            "avatar": "default",
-            "role": "admin",
-            "created": "--- --- ---"
-        },
-        {
-            "id": "-------",
-            "name": "--- --- ---",
-            "username": "------",
-            "email": "------@mail.com",
-            "gender": "female",
-            "birthday": "00-00-0000",
+            "id": "6934cad44e896cbc5c71a8b7",
+            "name": "adipati suryanegara",
+            "username": "adipati",
+            "email": "adipati@gmail.com",
+            "gender": "laki-laki",
+            "birthday": "12-13-1997",
             "avatar": "default",
             "role": "user",
-            "created": "--- --- ---"
+            "created": "2025-12-07T00:31:16.831Z"
+        },
+        {
+            "id": "6934cb9c3de0992060c5375e",
+            "name": "roro mendut",
+            "username": "roro",
+            "email": "roro@gmail.com",
+            "gender": "laki-laki",
+            "birthday": "12-13-1997",
+            "avatar": "default",
+            "role": "admin",
+            "created": "2025-12-07T00:34:36.314Z"
         }
     ]
-    }
+  }
   ```
   
 ### 2. Delete User By ID
 - **Endpoint** : `DELETE /user/id_user`
 ##### Response Success :
 ```json
-    {
-        "message": "the user has been successfully deleted",
-        "deleted": {
-            "id": "-------",
-            "name": "--- --- ---",
-            "user": "user",
-            "email": "------@mail.com"
-        }
+  {
+    "success": true,
+    "message": "success : the user has been successfully deleted",
+    "data": {
+        "id": "6934cad44e896cbc5c71a8b7",
+        "name": "adipati suryanegara",
+        "username": "adipati",
+        "email": "adipati@gmail.com"
     }
+  }
 ```
 ### 3. Fetch User By ID
 - **Endpoint** : `GET /user/id_user`
 ##### Response Success :
 ```json
 {
-    "message": "success",
+    "success": true,
+    "message": "success : user is displayed by ID",
     "data": {
-        "id": "692699b11ddb0f69336fd4fd",
-        "email": "example@mail.com",
-        "gender": "famele",
-        "birthday": "28-01-1997",
+        "id": "6934ce33d68123091a3908f0",
+        "email": "adipati@gmail.com",
+        "gender": "laki-laki",
+        "birthday": "12-13-1997",
         "role": "user",
-        "created": "2025-11-26T06:09:53.239Z"
+        "created": "2025-12-07T00:45:39.880Z"
     }
 }
 ```
@@ -179,20 +185,26 @@
   ##### Request Body :
   ```json
   {
-    "title" : "--- --- ---",
-    "content" : "--- --- ---"
+    "title" : "pulang",
+    "content" : "",
+    "thumbnail" : "image.jpg"
   }
   ```
   ##### Response Success :
   ```json
-  {
-    "message": "succeed",
+    {
+    "success" : true,
+    "message": "success : content created successfully",
     "data": {
-        "user": "------",
-        "title": "--- --- ---",
-        "content": "--- --- ---",
-        "thumbnail": "uploads/contents/------",
-        "created": "--- --- ---",
+        "id": "6934cfea1bc8dcb6ed9b5f32",
+        "title": "pulang",
+        "content": "-",
+        "thumbnail": "uploads/contents/2025-12-07T00:52:58.011Z-151619766.jpeg",
+        "created": "2025-12-07T00:52:58.016Z",
+        "author": {
+            "_id": "6934ce33d68123091a3908f0",
+            "name": "adipati suryanegara"
+        }
     }
   }
   ```
@@ -202,10 +214,15 @@
    ##### Response Success :
    ```json
    {
-    "message": "deleted",
-    "deleted": {
-        "id": "------",
-        "title": "--- --- ---"
+    "success": true,
+    "message": "success : content successfully deleted",
+    "data": {
+        "id": "6934cfea1bc8dcb6ed9b5f32",
+        "title": "pulang",
+        "author": {
+            "_id": "6934ce33d68123091a3908f0",
+            "name": "adipati suryanegara"
+        }
     }
   }
    ```

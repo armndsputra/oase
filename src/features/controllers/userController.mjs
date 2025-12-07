@@ -18,6 +18,7 @@ export const register = async ( req, res, next ) => {
                 success : true,
                 message : 'success : user has successfully registered',
                  data : {
+                    id : data._id,
                     name : data.name,
                     username : data.username,
                     email : data.email,
@@ -48,15 +49,18 @@ export const register = async ( req, res, next ) => {
 export const fetchAllUser = async ( req, res ) => {
 
     try {
+
+        const { limit, offset } = req.pagination
     
         // 1. fetch all
-        const results = await Users.find().skip().limit().exec()
+        const data = await Users.find().skip(offset).limit(limit).exec()
     
         // 2. print results
-        if (results) {
+        if (data) {
             return res.status(200).json({
-                 message : 'success : user successfully displayed',
-                data : results.map(e => {
+                success : true,
+                message : 'success : user successfully displayed',
+                data : data.map(e => {
                     return {
                         id : e._id,
                         name : e.name,
@@ -97,6 +101,7 @@ export const deleteUser =  async ( req, res ) => {
         // 2. print user data
         if (data) {
             return res.status(200).json({
+                success : true,
                 message : 'success : the user has been successfully deleted',
                 data : {
                     id : data._id,
@@ -164,6 +169,7 @@ export const fetchUserByID = async ( req, res ) => {
 
         // 2. print data
         if (data) return res.status(200).json({
+            success : true,
             message : 'success : user is displayed by ID',
             data : {
                 id : data._id,
@@ -178,7 +184,8 @@ export const fetchUserByID = async ( req, res ) => {
         
         // 2.1 if data not found
         if (!data) return res.status(200).json({
-            message : 'success',
+            success : true,
+            message : 'success : user not found by ID',
             data : []
         })
 

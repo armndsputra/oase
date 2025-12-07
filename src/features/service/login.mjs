@@ -22,6 +22,7 @@ export const login = async ( req, res ) => {
         }, process.env.JWT_KEY, { expiresIn: process.env.JWT_EXPIRES }, function(err, token) {
             if (err) return console.error(err)
                 return res.status(201).json({
+                    success : true,
                     message : "you have successfully logged in",
                     data : {
                         access_token : token,

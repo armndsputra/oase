@@ -14,6 +14,7 @@ export const fetchAllContent = async ( req, res ) => {
         // 2. print content data
         if (data) {
             return res.status(200).json({
+                success : true,
                 message : 'success : content successfully displayed',
                 data : data.map(e => {
                     return {
@@ -50,6 +51,7 @@ export const saveContent = async ( req, res ) => {
         // 2. print the results
         const data = await (await content.save()).populate('user', 'id name')
         if (data) return res.status(201).json({
+            success : true,
             message : 'success : content created successfully',
             data : {
                 id : data._id,
@@ -85,6 +87,7 @@ export const deleteContent = async ( req, res) => {
         // 2. print content data
         if (data) {
             return res.status(200).json({
+                success : true,
                 message : 'success : content successfully deleted',
                 data : {
                     id : data._id,
@@ -115,6 +118,7 @@ export const updateContent = async ( req, res) => {
         
         // 2. print the data
         return res.status(201).json({
+            success : true,
             message : 'success : content successfully updated',
             data : {
                 id : data._id,
@@ -151,6 +155,7 @@ export const fetchContentByID = async ( req, res ) => {
 
         // 2. print data
         if (data) return res.status(200).json({
+            success : true,
             message : 'success : content is displayed by ID',
             data : {
                 id : data._id,
@@ -195,6 +200,7 @@ export const fetchContentByKeywords = async ( req, res, next ) => {
 
         if (data.length === 0) {
             return res.status(201).json({
+                success : true,
                 message : 'failure : content not found!',
                 data : []
             })
@@ -203,6 +209,7 @@ export const fetchContentByKeywords = async ( req, res, next ) => {
         // 2. print data
         if (data) {
             return res.status(201).json({
+                success : true,
                 message : 'success : content is displayed by keywords',
                 data : data.map(e => {
                     return {
