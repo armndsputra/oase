@@ -42,7 +42,7 @@
 > ***GUEST FEATURE :***
 - [ ] `POST /comment` - post comments
 
----
+
 1. > npm install
 2. > create a file with name .env
    ```
@@ -56,9 +56,9 @@
   
 3. > npm start
    
----
 
 
+<br>
 
 > ### Register
 - **Endpoint** : `POST /register`
@@ -95,6 +95,7 @@
   }
   ```
 
+<br><br>
 
 > ### Login
 - **Endpoint** : `POST /login`
