@@ -10,13 +10,37 @@
 
 # Authentication & User Management API
 ## Overview
-*API for user management with role-based authentication and authorization system ( admin & user )*
+*API for user management with role-based authentication and authorization system ( ADMIN, USER, GUEST )*
 ### Role-based Features
  | Role  | Permissions |
 |-------|-------------|
 | ADMIN | delete user, fetch all user, fetch user by ID |
 | USER  | update user, post content, update content, fetch all content by user ID |
+| GUEST | post comments |
 | GENERAL  | fetch all contents, fetch content by id, fetch content by keywords |
+
+
+
+> ***ADMIN FEATURE :***
+- [x] `GET /user` - fetch all user [GO](#fetch-all-user)
+- [x] `DELETE /user/id_user` - delete user by ID [GO](#delete-user-by-id)
+- [x] `GET /user/id_user` - fetch user by ID [GO](#fetch-user-by-id)
+
+> ***USER FEATURE :***
+- [x] `POST /postal` - posting content [GO](#posting-content)
+- [x] `DELETE /postal/id_content` - delete content [GO](#delete-content)
+- [x] `PATCH /postal/id_content` - update content [GO](#update-content)
+- [ ] `GET /postal/user` - fetch all content by user ID
+- [ ] `GET /comment/user` - fetch all comment by user ID
+- [ ] `GET /comment/reply` - reply comment
+
+> ***GENERAL FEATURE :***
+- [x] `GET /postal` - fetch all content [GO](#fetch-all-content)
+- [x] `GET /postal/id_user` - fetch content by ID [GO](#fetch-content-by-id)
+- [x] `POST /postal/keyword` - fetch content by keyword [GO](#fetch-content-by-keywords)
+  
+> ***GUEST FEATURE :***
+- [ ] `POST /comment` - post comments
 
 ---
 1. > npm install
@@ -31,9 +55,12 @@
    ```
   
 3. > npm start
+   
 ---
 
-### Register
+
+
+> ### Register
 - **Endpoint** : `POST /register`
   ##### Request Body :
   ```json
@@ -69,7 +96,7 @@
   ```
 
 
-### Login
+> ### Login
 - **Endpoint** : `POST /login`
 
 ##### Request Body :
@@ -98,14 +125,10 @@
     "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MjY5OTQ5MWRkYjBmNjkzMzZmZDRlZCIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2NTA2NDE1MSwiZXhwIjoxNzY1MDY3NzUxfQ.rIlzUeyMrfwLI-cfD6WOJvwAhPUYfR4XEFhECrOzFEM" // access token code
 }
 ```
-## ADMIN ACCESS
-***FEATURE :***
-- [x] `GET /user` - fetch all user
-- [x] `DELETE /user/id_user` - delete user
-- [x] `GET /user/id_user` - fetch user by ID
+<!-- ## ADMIN ACCESS -->
+<br><br>
 
-
-### 1. Fetch All User
+> ### Fetch All User
   - **Endpoint :** `GET /user?limit=0&offset=0`
     
   ##### Response Success :
@@ -139,8 +162,9 @@
     ]
   }
   ```
+  <br><br>
   
-### 2. Delete User By ID
+> ### Delete User By ID
 - **Endpoint** : `DELETE /user/id_user`
 ##### Response Success :
 ```json
@@ -155,7 +179,9 @@
     }
   }
 ```
-### 3. Fetch User By ID
+<br><br>
+
+> ### Fetch User By ID
 - **Endpoint** : `GET /user/id_user`
 ##### Response Success :
 ```json
@@ -173,14 +199,10 @@
 }
 ```
 
+<!-- ## USER ACCESS -->
+<br><br>
 
-## USER ACCESS
-***FEATURE :***
-- [x] `POST /postal` - posting content
-- [x] `DELETE /postal/id_content` - delete content
-- [x] `PATCH /postal/id_content` - update content
-
-### 1. Posting Content
+> ### Posting Content
   - **Endpoint** : `POST /postal`
   ##### Request Body :
   ```json
@@ -208,7 +230,9 @@
     }
   }
   ```
-  ### 2. Delete Content
+<br><br>
+
+  > ### Delete Content
   - **Endpoint** : `DELETE /postal/id_content`
   
    ##### Response Success :
@@ -226,8 +250,9 @@
     }
   }
    ```
+<br><br>
 
-   ### 3. Update Content
+> ### Update Content
   - **Endpoint** : `PATCH /postal/id_content`
 ##### Request Body :
 ```json
@@ -257,13 +282,10 @@
 ```
 
 
-## GENERAL ACCESS
-***FEATURE :***
-- [x] `GET /postal` - fetch all content
-- [x] `GET /postal/id_user` - fetch by id content
-- [x] `POST /postal/keyword` - fetch by keyword
-  
-### 1. Fetch All Content
+<!-- ## GENERAL ACCESS -->
+<br><br>
+
+> ### Fetch All Content
   - **Endpoint** : `GET /postal/?limit=0&offset=0`
   ##### `Pagination` Params :
   ```json
@@ -294,7 +316,8 @@
 }
 ```
 
-### 2. Fetch Content By ID
+<br><br>
+> ### Fetch Content By ID
 - **Endpoint** : `GET /postal/id_content`
 ##### Response Success :
 ```json
@@ -314,8 +337,9 @@
     }
 }
 ```
+<br><br>
 
-### 3. Fetch Content By Keywords
+> ### Fetch Content By Keywords
 - **Endpoint** : `POST /postal/keywords`
 ##### Request Body :
 ```json
@@ -343,15 +367,7 @@
     ]
 }
 ```
----
 
-## Other Features
-> ***ADMIN :***
-- [ ] `GET /`
+<br>
 
-> ***USER :***
-- [ ] `GET /postal/user` - fetch all content by user ID
-- [ ] `GET /comment/user` - fetch all comment by user ID
-  
-> ***GENERAL :***
-- [ ] `GET /` 
+[More Documentation](guide/)
