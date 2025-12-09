@@ -14,3 +14,6 @@ export * from './user/pre-processing/processLoginData.mjs'
 export * from './user/pre-processing/processUpdateUserData.mjs'
 export * from './user/pre-processing/processFetchUserDataByID.mjs'
 export * from './user/pre-processing/processUpdateUserRoleData.mjs'
+
+// comment management
+export * from './comment/pre-processing/proccessCommentData.mjs'

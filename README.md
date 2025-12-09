@@ -41,7 +41,7 @@
 - [x] `POST /postal/keyword` - fetch content by keyword [GO](#fetch-content-by-keywords)
   
 > ***GUEST FEATURE :***
-- [ ] `POST /comment` - post comments
+- [x] `POST /comment` - post comments [GO](guide/doc.md#commenter)
 
 
 <br>
