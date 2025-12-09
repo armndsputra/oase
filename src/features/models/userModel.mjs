@@ -10,7 +10,7 @@ const setSchema = new Schema({
     gender : { type : String, required: true },
     birthday : { type : String, required: true },
     role : { type : String, required: true },
-    created : { type : Date, required : true },
+    createdAt : { type : Date, required : true },
 })
 
 export default mongoose.model('users', setSchema);

@@ -1,10 +1,10 @@
 import { body, validationResult } from 'express-validator'
 
 // Helper
-import { __file_remove } from "../../../../../helpers/__file_remove.mjs"
+import { __file_remove } from "../../../../helpers/__file_remove.mjs"
 
 // Model
-import Contents from '../../../../models/postalModel.mjs'
+import Contents from '../../../models/postalModel.mjs'
 
 export const processContentData = async ( req, res, next ) => {
 

@@ -1,5 +1,6 @@
 import  { Router }  from 'express'
 const router = Router()
+import multer from 'multer'
 
 // controllers
 import { 
@@ -11,8 +12,31 @@ import {
   fetchContentByKeywords
 } from '../controllers/postalController.mjs'
 
-// route helpers
-import { upload } from './middleware/postal/helpers/_set_multer.mjs'
+
+// configure storage for multer
+const storage = multer.diskStorage({
+      destination: (req, file, cb) => {
+        cb(null, 'uploads/contents/'); // specify the upload directory
+      },
+      filename: (req, file, cb) => {
+        cb(null, new Date().toISOString()+'-'+Math.round(Math.random() * 1E9)+'.'+file.mimetype.split('/')[1]); // rename the file
+      }
+  });
+
+// configure filter
+const fileFilter = (req, file, cb) => {
+    const mimetype = file.mimetype
+    if (mimetype === "image/jpeg" || mimetype === "image/png" || mimetype === "image/jpg") {
+        cb(null, true)
+    } else {
+        cb(null, false)
+    }
+      
+  }
+
+const upload = multer({ storage, fileFilter, limits: {
+    fileSize: 1024 * 1024, // 1MB limit
+  }})
 
 // route middleware
 import {
@@ -22,10 +46,10 @@ import {
   processFetchContentDataByID,
   processDeleteContentData,
   processFetchContentDataByKeywords
-} from './middleware/index.mjs'
+} from '../middleware/pre-processing/index.mjs'
 
 // service
-import { mainAccessUser } from '../service/mainAccessUser.mjs'
+import { mainAccessUser } from '../middleware/service/mainAccessUser.mjs'
 
 // fetch all
 router.get('/', processFetchAllContentData, fetchAllContent)

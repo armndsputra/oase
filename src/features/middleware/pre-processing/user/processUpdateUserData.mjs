@@ -1,10 +1,10 @@
 import mongoose from "mongoose"
 // import bcrypt from "bcrypt"
 
-import User from "../../../../models/userModel.mjs"
+import User from "../../../models/userModel.mjs"
 
 // helper
-import { __file_remove } from "../../../../../helpers/__file_remove.mjs"
+import { __file_remove } from "../../../../helpers/__file_remove.mjs"
 
 export const processUpdateUserData = async ( req, res, next) => {
 

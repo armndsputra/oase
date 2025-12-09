@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 import { body, validationResult } from 'express-validator'
 
-import User from "../../../../models/userModel.mjs"
+import User from "../../../models/userModel.mjs"
 
 export const processUpdateUserRoleData = async ( req, res, next ) => {
 

@@ -9,7 +9,7 @@ export const register = async ( req, res, next ) => {
     try {
 
         // 1. save a single document
-        const user = new Users(req.data)
+        const user = new Users(req.processRegisterData)
         const data = await user.save()
 
         // 2. print user data
@@ -24,10 +24,10 @@ export const register = async ( req, res, next ) => {
                     email : data.email,
                     password : "*********",
                     gender: data.gender,
-                    birhtday: data.birthday,
+                    birthday: data.birthday,
                     avatar : data.avatar,
                     role : data.role,
-                    created : data.created
+                    createdAt : data.createdAt,
                 }
             })
         }
@@ -35,9 +35,10 @@ export const register = async ( req, res, next ) => {
 
     } catch (err) {
         // handle errors
-        console.log(err)
+        console.error(err)
         return res.status(500).json({ 
-            message : 'error system!'
+            success : false,
+            message : 'error in registering process!',
          })
     }
 

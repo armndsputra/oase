@@ -1,10 +1,10 @@
 import mongoose from "mongoose"
 
 // helper
-import { __file_remove } from "../../../../../helpers/__file_remove.mjs"
+import { __file_remove } from "../../../../helpers/__file_remove.mjs"
 
 // model
-import Contents from '../../../../models/postalModel.mjs'
+import Contents from '../../../models/postalModel.mjs'
 
 export const processUpdateContentData = async ( req, res, next ) => {
 

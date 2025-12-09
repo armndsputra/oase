@@ -5,7 +5,7 @@ const router = Router()
 import { register } from '../controllers/userController.mjs'
 
 // middleware
-import { processRegisterData } from './middleware/index.mjs'
+import { processRegisterData } from '../middleware/pre-processing/index.mjs'
 
 // register
 router.post('/', processRegisterData, register)

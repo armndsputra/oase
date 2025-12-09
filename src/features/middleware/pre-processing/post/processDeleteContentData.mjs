@@ -1,10 +1,10 @@
 import mongoose from "mongoose"
 
 // Model
-import Contents from '../../../../models/postalModel.mjs'
+import Contents from '../../../models/postalModel.mjs'
 
 // helper
-import { __file_remove } from "../../../../../helpers/__file_remove.mjs"
+import { __file_remove } from "../../../../helpers/__file_remove.mjs"
 
 export const processDeleteContentData = async ( req, res, next ) => {
 

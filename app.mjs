@@ -23,9 +23,9 @@ app.use('/postal', postal)
 app.use('/commenter', comment)
 
 app.use('/user', user)
-app.use('/register', register)
 app.use('/login', login)
 
+app.use('/api/account/register', register) // register route
 
 // error handling
 app.use((req, res, next) => {

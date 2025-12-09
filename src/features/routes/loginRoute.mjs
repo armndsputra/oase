@@ -2,11 +2,11 @@ import  { Router }  from 'express'
 const router = Router()
 
 // middleware
-import { processLoginData } from './middleware/index.mjs'
+import { processLoginData } from '../middleware/pre-processing/index.mjs'
 
 // service 
-import { login } from '../service/login.mjs'
-import { loginAccess } from '../service/loginAccess.mjs'
+import { login } from '../middleware/service/login.mjs'
+import { loginAccess } from '../middleware/service/loginAccess.mjs'
 
 // register
 router.post('/', loginAccess, processLoginData, login)
