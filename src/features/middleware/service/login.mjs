@@ -7,7 +7,7 @@ export const login = async ( req, res ) => {
     try {
 
         // 1. fetch data has been verifed
-        const { id, role, tempPassword, password } = req.data
+        const { id, role, tempPassword, password } = req.processLoginData
 
         // 2. check password and tempPassword
         const verifyPasword = await bcrypt.compare(tempPassword, password)
@@ -32,11 +32,14 @@ export const login = async ( req, res ) => {
                 })
         })
 
+        return false
+
     } catch (err) {
          // handle errors
         console.log(err)
         res.status(500).json({
-            message : 'error system!',
+            success: false,
+            message : 'error in login service!',
         })
     }
 

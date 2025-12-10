@@ -22,7 +22,7 @@ export const register = async ( req, res, next ) => {
                     name : data.name,
                     username : data.username,
                     email : data.email,
-                    password : "*********",
+                    password : "**********",
                     gender: data.gender,
                     birthday: data.birthday,
                     avatar : data.avatar,
@@ -71,7 +71,7 @@ export const fetchAllUser = async ( req, res ) => {
                         birthday : e.birthday,
                         avatar : e.avatar,
                         role : e.role,
-                        created : e.created
+                        createdAt : e.createdAt,
                     }
                 })
             })
@@ -81,7 +81,8 @@ export const fetchAllUser = async ( req, res ) => {
         // handle errors
         console.error(err)
         return res.status(500).json({
-            message : 'error system!',
+            success : false,
+            message : 'error processing fetch all user data!',
         })
     }
 }
@@ -93,7 +94,7 @@ export const deleteUser =  async ( req, res ) => {
 
     try {
 
-        const { id } = req.data
+        const { id } = req.processUserData
 
         // 1. delete user by ID
         const data = await Users.findByIdAndDelete(id)
@@ -117,7 +118,8 @@ export const deleteUser =  async ( req, res ) => {
         // handle errors
         console.log(err)
         return res.status(500).json({ 
-            message : 'error system!'
+            success : false,
+            message : 'error in delete process!'
          })
     }
 
@@ -131,16 +133,19 @@ export const updateUser = async ( req, res ) => {
     try {
 
         // 1. update data by ID
-        const data = await Users.findByIdAndUpdate(req.id, req.data, { new: true })
+        const data = await Users.findByIdAndUpdate(req.id, req.processUpdateUserData, { new: true })
         
-        // 2. print the result
+        // 2. print the user data
         return res.status(201).json({
+            success : true,
             message : 'success : user successfully updated',
             data : {
-                user : data.name,
+                name : data.name,
+                username : data.username,
+                email : data.email,
                 gender : data.gender,
                 birthday : data.birthday,
-                created : data.created,
+                createdAt : data.createdAt,
                 avatar : data.avatar,
             }
         })
@@ -149,7 +154,8 @@ export const updateUser = async ( req, res ) => {
         // handle errors
         console.log(err)
         return res.status(500).json({ 
-            message : 'error system !'
+            success : false,
+            message : 'error processing update user data!'
          })
     }
 
@@ -179,7 +185,7 @@ export const fetchUserByID = async ( req, res ) => {
                 gender : data.gender,
                 birthday : data.birthday,
                 role : data.role,
-                created : data.created,
+                createdAt : data.createdAt,
             }
         })
         
@@ -196,7 +202,8 @@ export const fetchUserByID = async ( req, res ) => {
         // handle errors
         console.log(err)
         return res.status(500).json({ 
-            message : 'error system!'
+            success : false,
+            message : 'error processing fetch user by ID!'
          })
     }
 
@@ -209,7 +216,7 @@ export const updateUserRole = async ( req, res ) => {
 
     try {
 
-        const { id, role } = req.data
+        const { id, role } = req.processUpdateUserRoleData
 
         // 1. update user role by ID
         const data = await Users.findByIdAndUpdate(id, { role : role }, { new: true })
@@ -219,9 +226,11 @@ export const updateUserRole = async ( req, res ) => {
             success : true,
             message : 'success : user role successfully updated',
             data : {
-                user : data.name,
+                name : data.name,
+                username : data.username,
+                email : data.email,
                 role : data.role,
-                created : data.created,
+                createdAt : data.createdAt,
             }
         })
 
@@ -229,7 +238,8 @@ export const updateUserRole = async ( req, res ) => {
         // handle errors
         console.log(err)
         return res.status(500).json({ 
-            message : 'error system !'
+            success : false,
+            message : 'error processing update user role data!'
          })
     }
 

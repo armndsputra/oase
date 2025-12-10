@@ -15,10 +15,8 @@ import {
 } from '../middleware/pre-processing/index.mjs'
 
 // service
-import { deleteAccessUser } from '../middleware/service/deleteAccessUser.mjs'
-import { fetchAccessUser } from '../middleware/service/fetchAccessUser.mjs'
-import { updateAccessUser } from '../middleware/service/updateAccessUser.mjs'
 import { mainAccessAdmin } from '../middleware/service/mainAccessAdmin.mjs'
+import { mainAccessUser } from '../middleware/service/mainAccessUser.mjs'
 
 // route helpers
 // import { upload } from './middleware/user/helpers/_set_multer.mjs'
@@ -51,16 +49,16 @@ const upload = multer({ storage, fileFilter, limits: {
 
 
 // fetch all user
-router.get('/', fetchAccessUser, processFetchAllUserData, fetchAllUser)
+router.get('/', mainAccessAdmin, processFetchAllUserData, fetchAllUser)
 
 // fetch user by ID
 router.get('/:id', mainAccessAdmin, processFetchUserDataByID, fetchUserByID)
 
 // update user
-router.patch('/:id',updateAccessUser, upload.array('avatar'), processUpdateUserData, updateUser)
+router.patch('/:id',mainAccessUser, upload.array('avatar'), processUpdateUserData, updateUser)
 
 // delete user
-router.delete('/:id', deleteAccessUser, processDeleteUserData, deleteUser)
+router.delete('/:id', mainAccessAdmin, processDeleteUserData, deleteUser)
 
 // update user role
 router.patch('/role/:id', mainAccessAdmin, processUpdateUserRoleData, updateUserRole)

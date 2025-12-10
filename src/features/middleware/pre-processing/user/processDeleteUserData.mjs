@@ -13,15 +13,24 @@ export const processDeleteUserData = async ( req, res, next ) => {
         const id = req.params.id
 
         // 1. check id valid or not
-        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(400).json({ message : 'incorrect ID entered!'})
+        if (!mongoose.Types.ObjectId.isValid(id)) return res.status(400).json({ 
+            success: false,
+            message : 'incorrect ID entered!'
+        })
 
         // 2. Check if data exists
         const user = await User.findById(id)
-        if (!user) return res.status(404).json({ message : 'ID data not available!'})
+        if (!user) return res.status(404).json({ 
+            success: false,
+            message : 'ID user data not available!'
+        })
 
         // ACCESS DELETE USER ( AuthorizationAuthorization )
         if (user.role === role) {
-            return res.status(403).json({ message : 'forbidden : user is prohibited from being deleted!'})
+            return res.status(403).json({ 
+                success: false,
+                message : 'forbidden : user is prohibited from being deleted!'
+            })
         }
 
         // 3. remove old avatar path / file
@@ -31,8 +40,8 @@ export const processDeleteUserData = async ( req, res, next ) => {
             console.error('operation failed:', error)
         })
         
-        // 4. data has been verified
-        req.data = user
+        // 4. data has been verified adn next process
+        req.processUserData = user
         next()
 
 
@@ -40,7 +49,8 @@ export const processDeleteUserData = async ( req, res, next ) => {
          // handle errors
         console.log(err)
         res.status(500).json({
-            message : 'error system !',
+            success: false,
+            message : 'error in delete process!',
         })
     }
 

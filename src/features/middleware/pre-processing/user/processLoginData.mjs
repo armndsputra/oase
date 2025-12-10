@@ -10,7 +10,10 @@ export const processLoginData = async ( req, res, next ) => {
 
         // 1. check send request body
         if (!req.body || Object.keys(req.body).length === 0) {
-            return res.status(400).json({ message : 'request body is required'})
+            return res.status(400).json({ 
+                success: false,
+                message : 'request body is required'
+            })
         }
 
         // 2. fetch all data
@@ -27,6 +30,7 @@ export const processLoginData = async ( req, res, next ) => {
         if (!errors.isEmpty()) {
             console.error('validation errors :', errors.array())
             return res.status(422).json({
+                    success: false,
                     message: 'validation failed!',
                     errors: errors.array(),
                     receivedData: req.body
@@ -36,24 +40,30 @@ export const processLoginData = async ( req, res, next ) => {
         // 4. check account exists
         const user = await Users.findOne({ email }).exec()
         if (!user) {
-            return res.status(400).json({ message: "your email isn't exists !" })
+            return res.status(400).json({
+                success: false,
+                message: "account not found!" 
+            })
         }
 
         // 5. data has been verified
-        const data = {
+        const processLoginData = {
             id : user._id.toString(),
             role : user.role,
             password : user.password,
             tempPassword : password
         }
-        req.data = data
+
+        // 6. pass the verified data to the next middleware
+        req.processLoginData = processLoginData
         next()
 
     } catch (err) {
         // handle errors
         console.log(err)
         res.status(500).json({
-            message : 'error system',
+            success: false,
+            message : 'error in login process!',
         })
     }
 

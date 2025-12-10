@@ -32,11 +32,14 @@ export const processFetchAllUserData = async ( req, res, next ) => {
 
         if (err.message === 'NOT_NUMBER' || 'NEGATIVE_VALUES_NOT_ALLOWED') {
             return res.status(400).json({
+                success : false,
+                message : 'invalid query parameter!',
                 error: 'limit & offset have to number and positive number!'
             });
         }
         res.status(500).json({
-            message : 'Error system!',
+            success : false,
+            message : 'error processing fetch all user data!',
         })
     }
 
