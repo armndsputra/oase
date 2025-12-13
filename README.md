@@ -67,7 +67,7 @@
 <br>
 
 > ### Register
-- **Endpoint** : `POST /register`
+- **Endpoint** : `POST /api/account/register`
   ##### Request Body :
   ```json
   {
@@ -104,7 +104,7 @@
 <br><br>
 
 > ### Login
-- **Endpoint** : `POST /login`
+- **Endpoint** : `POST /api/account/login`
 
 ##### Request Body :
 ```json
