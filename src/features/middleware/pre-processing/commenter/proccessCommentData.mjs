@@ -1,10 +1,12 @@
 import mongoose from "mongoose"
 
 import Post from '../../../models/postModel.mjs'
+import Commenter from '../../../models/commenterModel.mjs'
 
 export const proccessCommentData = async ( req, res, next) => {
 
     try {
+
 
         // validate comment data exists
         if (!req.body || Object.keys(req.body).length === 0) {
@@ -34,12 +36,21 @@ export const proccessCommentData = async ( req, res, next) => {
             })
         }
 
+        // check for duplicate comment by same user on same post
+        const commenter = await Commenter.find({ commenter: req.decode.id, content: id, comment: comment.trim() })
+        if (commenter.length > 0) {
+            return res.status(400).json({ 
+                success: false,
+                message: 'you have already made this comment!' 
+            })
+        }
+
         // check if post exists
         const post = await Post.findById(id)
         if (!post) {
             return res.status(404).json({
                 success: false,
-                message: 'post not found!' 
+                message: 'post/content not found!' 
             }) 
         }
         

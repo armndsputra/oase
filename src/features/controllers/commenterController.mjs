@@ -39,14 +39,14 @@ export const fetchCommenterByPostId = async (req, res) => {
         const comments = await Commenter.find({ content : postId })
 
         res.status(200).json({
-            success: true,
-            message: `comments for post ${postId} fetched successfully`,
-            comments: comments.map(comment => ({
-                id: comment._id,
-                commenter: comment.commenter,
-                content: comment.content,
-                comment: comment.comment,
-                createdAt: comment.createdAt
+            success : true,
+            message : `comments for post ${postId} fetched successfully`,
+            comments : comments.map(comment => ({
+                id : comment._id,
+                commenter : comment.commenter,
+                content : comment.content,
+                comment : comment.comment,
+                createdAt : comment.createdAt
             }))
         });
 
@@ -54,7 +54,7 @@ export const fetchCommenterByPostId = async (req, res) => {
         console.error(err);
         res.status(500).json({
             success: false,
-            message: 'error fetching comments!'
-        });
+            message: 'error in fetch all commenter by post ID/contentID'
+        })
     }
 }

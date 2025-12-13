@@ -1,22 +1,23 @@
 > ### Commenter
-- **Endpoint** : `POST /commenter/id_content`
+- **Endpoint** : `POST /api/commenter/id_content`
+- [Return to the link list](../README.md#link-list-)
   ##### Request Body :
   ```json
   {
-    "comment" : "ini cerita yang kelam", // required
+    "comment" : "good post", // required
   }
   ```
   ### Response Success : 
   ```json
-    {
-    "scuccess": true,
-    "message": "Comment added to post 6934d128ecdef486863838c4",
+  {
+    "success": true,
+    "message": "comment added to post 693cfa10cf74fba8da5b5e7c successfully",
     "comment": {
-        "id": "6937c6f13246344302cf374a",
-        "commenter": "6937b3560ef2caf0ec4deda4",
-        "content": "6934d128ecdef486863838c4",
-        "comment": "ini cerita yang kelam",
-        "created": "2025-12-09T06:51:29.102Z"
+        "id": "693d00e01c9b5882cf7da38c",
+        "commenter": "693d0023f2c4ecadc9160542",
+        "content": "693cfa10cf74fba8da5b5e7c",
+        "comment": "good post",
+        "createdAt": "2025-12-13T06:00:00.481Z"
     }
-    }
+  }
   ```

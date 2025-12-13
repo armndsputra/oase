@@ -12,7 +12,7 @@ import { mainAccessUser } from '../middleware/service/mainAccessUser.mjs'
 // comment route
 router.post('/:id', mainAccessGuest, proccessCommentData, commenter)
 
-// fetch commenter by post id route
+// fetch all commenter by post id/content id
 router.get('/:id', 
     mainAccessUser, 
     processFetchAllCommentsByPostId, 

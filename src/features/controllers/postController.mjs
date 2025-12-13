@@ -20,9 +20,9 @@ export const fetchAllContent = async ( req, res ) => {
                     return {
                         id : e._id,
                         title : e.title,
-                        content : "**********************",
+                        content : "hidden",
                         thubnail : e.thumbnail,
-                        created : e.createdAt,
+                        createdAt : e.createdAt,
                         author : e.user,
                     }
                 })
@@ -128,7 +128,7 @@ export const updateContent = async ( req, res) => {
                 title : data.title,
                 content : data.content,
                 thumbnail : data.thumbnail,
-                created : data.created,
+                createdAt : data.createdAt,
                 author : data.user,
             }
         })
@@ -165,7 +165,7 @@ export const fetchContentByID = async ( req, res ) => {
                 title : data.title,
                 content : data.content,
                 thumbnail : data.thumbnail,
-                created : data.created,
+                createdAt : data.createdAt,
                 author : data.user,
             }
         })
@@ -220,7 +220,7 @@ export const fetchContentByKeywords = async ( req, res, next ) => {
                     return {
                         id : e._id,
                         title : e.title,
-                        content : "**********************",
+                        content : "hidden",
                         thumbnail : e.thumbnail,
                         createdAt : e.createdAt,
                         author : e.user,

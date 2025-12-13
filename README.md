@@ -14,34 +14,36 @@
 ### Role-based Features
  | Role  | Permissions |
 |-------|-------------|
-| ADMIN | delete user, fetch all user, fetch user by ID |
-| USER  | update user, post content, update content, fetch all content by user ID |
-| GUEST | post comments |
-| GENERAL  | fetch all contents, fetch content by id, fetch content by keywords |
+| ADMIN | delete user, fetch user, delete comment |
+| USER  | update user account, post/create content, update content, fetch content, fetch comment |
+| GUEST | post comment |
+| GENERAL  | fetch content, fetch comment, login, register |
 
+### Link List :
 
+> ***ADMIN***
+- [x] `GET /api/account/user/?limit=0&offset=0` - fetch all user  [GO](#fetch-all-user)
+- [x] `DELETE /api/account/user/id_user` - delete one user by ID [GO](#delete-one-user-by-id)
+- [x] `GET /api/account/user/id_user` - fetch one user by ID [GO](#fetch-one-user-by-id)
+- [x] `PATCH /api/account/user/role/id_user` - update one user role by ID [GO](#update-one-user-role-by-id)
+- [ ] `DELETE /api/commenter/id_commenter` - delete one comment by ID
 
-> ***ADMIN FEATURE :***
-- [x] `GET /user` - fetch all user [GO](#fetch-all-user)
-- [x] `DELETE /user/id_user` - delete user by ID [GO](#delete-user-by-id)
-- [x] `GET /user/id_user` - fetch user by ID [GO](#fetch-user-by-id)
-- [x] `PATCH /user/role/id_user` - update user role by ID [GO](#update-user-role-by-id)
+> ***USER***
+- [x] `POST /api/postal` - post content [GO](#posting-content)
+- [x] `DELETE /api/postal/id_content` - delete one content by ID [GO](#delete-one-content-by-id)
+- [x] `PATCH /api/post/id_content` - update one content by ID [GO](#update-content)
+- [ ] `GET /api/post/user` - fetch all user content 
+- [x] `GET /api/commenter/id_content` - fetch all commenter by ID
+- [ ] `GET /api/commenter/reply` - reply commenter
 
-> ***USER FEATURE :***
-- [x] `POST /postal` - posting content [GO](#posting-content)
-- [x] `DELETE /postal/id_content` - delete content [GO](#delete-content)
-- [x] `PATCH /postal/id_content` - update content [GO](#update-content)
-- [ ] `GET /postal/user` - fetch all content by user ID [GO](guide/doc.md#fetch-all-content-by-user-id)
-- [ ] `GET /comment/user` - fetch all comment by user ID
-- [ ] `GET /comment/reply` - reply comment
+> ***GUEST***
+- [x] `POST /api/commenter` - commenter [GO](guide/doc.md#commenter)
 
-> ***GENERAL FEATURE :***
-- [x] `GET /postal` - fetch all content [GO](#fetch-all-content)
-- [x] `GET /postal/id_user` - fetch content by ID [GO](#fetch-content-by-id)
-- [x] `POST /postal/keyword` - fetch content by keyword [GO](#fetch-content-by-keywords)
+> ***GENERAL***
+- [x] `GET /api/post/?limit=0&offset=0` - fetch all content [GO](#fetch-all-content)
+- [x] `GET /api/post/id_content` - fetch one content by ID [GO](#fetch-one-content-by-id)
+- [x] `POST /api/post/keywords?limit=0&offset=0` - fetch all content by keywords [GO](#fetch-all-content-by-keywords)
   
-> ***GUEST FEATURE :***
-- [x] `POST /comment` - post comments [GO](guide/doc.md#commenter)
 
 
 <br>
@@ -53,6 +55,7 @@
     PORT='3000'
     #DATABASE MONGODB URL
     MONGODB_URL = ''
+
     #JSON Web Token (JWT) Key
     JWT_KEY = ''
    ```
@@ -133,72 +136,65 @@
 <br><br>
 
 > ### Fetch All User
-  - **Endpoint :** `GET /user?limit=0&offset=0`
+  - **Endpoint :** ``GET /api/account/user/?limit=0&offset=0``
     
+   - [Return to the link list](#link-list-)
+
   ##### Response Success :
   ```json
-    {
+  {
     "success": true,
     "message": "success : user successfully displayed",
     "data": [
         {
-            "id": "6934cad44e896cbc5c71a8b7",
+            "id": "693bb530d613027903742a41",
             "name": "adipati suryanegara",
             "username": "adipati",
-            "email": "adipati@gmail.com",
-            "gender": "laki-laki",
-            "birthday": "12-13-1997",
-            "avatar": "default",
-            "role": "user",
-            "created": "2025-12-07T00:31:16.831Z"
-        },
-        {
-            "id": "6934cb9c3de0992060c5375e",
-            "name": "roro mendut",
-            "username": "roro",
-            "email": "roro@gmail.com",
-            "gender": "laki-laki",
-            "birthday": "12-13-1997",
-            "avatar": "default",
+            "email": "adipati@mail.com",
+            "gender": "male",
+            "birthday": "28011997",
+            "avatar": "default.jpg",
             "role": "admin",
-            "created": "2025-12-07T00:34:36.314Z"
+            "createdAt": "2025-12-12T06:24:48.435Z"
         }
     ]
   }
   ```
   <br><br>
   
-> ### Delete User By ID
-- **Endpoint** : `DELETE /user/id_user`
+> ### Delete One User By ID
+- **Endpoint** : `DELETE /api/account/user/id_user`
+- [Return to the link list](#link-list-)
 ##### Response Success :
 ```json
-  {
+{
     "success": true,
     "message": "success : the user has been successfully deleted",
     "data": {
-        "id": "6934cad44e896cbc5c71a8b7",
-        "name": "adipati suryanegara",
-        "username": "adipati",
-        "email": "adipati@gmail.com"
+        "id": "693cf5c3cf74fba8da5b5e67",
+        "name": "nadin aminah",
+        "username": "nadin",
+        "email": "nadin@mail.com"
     }
-  }
+}
 ```
 <br><br>
 
-> ### Fetch User By ID
-- **Endpoint** : `GET /user/id_user`
+> ### Fetch One User By ID
+- **Endpoint** : `GET /api/account/user/id_user`
+- [Return to the link list](#link-list-)
 ##### Response Success :
 ```json
 {
     "success": true,
     "message": "success : user is displayed by ID",
     "data": {
-        "id": "6934ce33d68123091a3908f0",
-        "email": "adipati@gmail.com",
-        "gender": "laki-laki",
-        "birthday": "12-13-1997",
-        "role": "user",
-        "created": "2025-12-07T00:45:39.880Z"
+        "id": "693bb530d613027903742a41",
+        "email": "adipati@mail.com",
+        "gender": "male",
+        "birthday": "28011997",
+        "role": "admin",
+        "createdAt": "2025-12-12T06:24:48.435Z"
     }
 }
 ```
@@ -207,49 +203,51 @@
 <br><br>
 
 > ### Posting Content
-  - **Endpoint** : `POST /postal`
+  - **Endpoint** : `POST /api/post`
+  - [Return to the link list](#link-list-)
   ##### Request Body :
   ```json
   {
-    "title" : "pulang",
-    "content" : "******************",
+    "title" : "buruh pabrik",
+    "content" : "Lorem Ipsum is simply dummy text .....",
     "thumbnail" : "image.jpg"
   }
   ```
   ##### Response Success :
   ```json
-    {
-    "success" : true,
+  {
+    "success": true,
     "message": "success : content created successfully",
     "data": {
-        "id": "6934cfea1bc8dcb6ed9b5f32",
-        "title": "pulang",
-        "content": "*****************",
-        "thumbnail": "uploads/contents/2025-12-07T00:52:58.011Z-151619766.jpeg",
-        "created": "2025-12-07T00:52:58.016Z",
+        "id": "693cfab2cf74fba8da5b5e82",
+        "title": "buruh pabrik",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text  of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        "thumbnail": "uploads/posts/2025-12-13T05:33:38.540Z-523537722.jpeg",
+        "createdAt": "2025-12-13T05:33:38.545Z",
         "author": {
-            "_id": "6934ce33d68123091a3908f0",
-            "name": "adipati suryanegara"
+            "_id": "693cf7e9cf74fba8da5b5e75",
+            "name": "nadin aminah"
         }
     }
   }
   ```
 <br><br>
 
-  > ### Delete Content
-  - **Endpoint** : `DELETE /postal/id_content`
+  > ### Delete One Content by ID
+  - **Endpoint** : `DELETE /api/post/id_content`
+  - [Return to the link list](#link-list-)
   
    ##### Response Success :
    ```json
-   {
+  {
     "success": true,
     "message": "success : content successfully deleted",
     "data": {
-        "id": "6934cfea1bc8dcb6ed9b5f32",
-        "title": "pulang",
+        "id": "693cfab2cf74fba8da5b5e82",
+        "title": "buruh pabrik",
         "author": {
-            "_id": "6934ce33d68123091a3908f0",
-            "name": "adipati suryanegara"
+            "_id": "693cf7e9cf74fba8da5b5e75",
+            "name": "nadin aminah"
         }
     }
   }
@@ -258,11 +256,12 @@
 
 > ### Update Content
   - **Endpoint** : `PATCH /postal/id_content`
+  - [Return to the link list](#link-list-)
 ##### Request Body :
 ```json
 {
-  "title" : "",
-  "content" : "sebuah kampung tradisional dipinggirian kota yogyakarta",
+  "title" : "buruh pabrik kulonprogo",
+  "content" : "Lorem Ipsum is simply dummy text.....",
   "thumbnail" : "image.jpg"
 }
 ```
@@ -272,14 +271,14 @@
     "success": true,
     "message": "success : content successfully updated",
     "data": {
-        "id": "6934d128ecdef486863838c4",
-        "title": "pulang",
-        "content": "sebuah kampung tradisional dipinggirian kota yogyakarta",
-        "thumbnail": "uploads/contents/2025-12-07T01:57:42.275Z-538175537.jpeg",
-        "created": "2025-12-07T00:58:16.444Z",
+        "id": "693cfa10cf74fba8da5b5e7c",
+        "title": "buruh pabrik kulonprogo",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        "thumbnail": "uploads/posts/2025-12-13T05:46:32.553Z-515117181.jpeg",
+        "createdAt": "2025-12-13T05:30:56.495Z",
         "author": {
-            "_id": "6934ce33d68123091a3908f0",
-            "name": "adipati suryanegara"
+            "_id": "693cf7e9cf74fba8da5b5e75",
+            "name": "nadin aminah"
         }
     }
 }
@@ -290,14 +289,8 @@
 <br><br>
 
 > ### Fetch All Content
-  - **Endpoint** : `GET /postal/?limit=0&offset=0`
-  ##### `Pagination` Params :
-  ```json
-  {
-    "limit" : 0,
-    "offset" : 0
-  }
-  ```
+  - **Endpoint** : `GET /api/post/?limit=0&offset=0`
+-  [Return to the link list](#link-list-)
   ##### Response Success : 
 
 ```json
@@ -306,14 +299,14 @@
     "message": "success : content successfully displayed",
     "data": [
         {
-            "id": "6934d128ecdef486863838c4",
-            "title": "pulang",
-            "content": "**********",
-            "thubnail": "uploads/contents/2025-12-07T01:57:42.275Z-538175537.jpeg",
-            "created": "2025-12-07T00:58:16.444Z",
+            "id": "693cfa10cf74fba8da5b5e7c",
+            "title": "buruh pabrik kulonprogo",
+            "content": "hidden",
+            "thubnail": "uploads/posts/2025-12-13T05:46:32.553Z-515117181.jpeg",
+            "createdAt": "2025-12-13T05:30:56.495Z",
             "author": {
-                "_id": "6934ce33d68123091a3908f0",
-                "name": "adipati suryanegara"
+                "_id": "693cf7e9cf74fba8da5b5e75",
+                "name": "nadin aminah"
             }
         }
     ]
@@ -321,34 +314,37 @@
 ```
 
 <br><br>
-> ### Fetch Content By ID
-- **Endpoint** : `GET /postal/id_content`
+
+> ### Fetch One Content By ID
+- **Endpoint** : `GET /api/post/id_content`
+- [Return to the link list](#link-list-)
 ##### Response Success :
 ```json
 {
     "success": true,
     "message": "success : content is displayed by ID",
     "data": {
-        "id": "6934d128ecdef486863838c4",
-        "title": "pulang",
-        "content": "dikampung yang sepi",
-        "thumbnail": "uploads/contents/2025-12-07T01:57:42.275Z-538175537.jpeg",
-        "created": "2025-12-07T00:58:16.444Z",
+        "id": "693cfa10cf74fba8da5b5e7c",
+        "title": "buruh pabrik kulonprogo",
+        "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        "thumbnail": "uploads/posts/2025-12-13T05:46:32.553Z-515117181.jpeg",
+        "createdAt": "2025-12-13T05:30:56.495Z",
         "author": {
-            "_id": "6934ce33d68123091a3908f0",
-            "name": "adipati suryanegara"
+            "_id": "693cf7e9cf74fba8da5b5e75",
+            "name": "nadin aminah"
         }
     }
 }
 ```
 <br><br>
 
-> ### Fetch Content By Keywords
-- **Endpoint** : `POST /postal/keywords`
+> ### Fetch All Content By Keywords
+- **Endpoint** : `POST /api/post/keywords?limit=0&offset=0`
+- [Return to the link list](#link-list-)
 ##### Request Body :
 ```json
 {
-  "keywords" : "pulang"
+  "keywords" : "pabrik"
 }
 ```
 ##### Response Success : 
@@ -358,14 +354,14 @@
     "message": "success : content is displayed by keywords",
     "data": [
         {
-            "id": "6934d128ecdef486863838c4",
-            "title": "pulang",
-            "content": "**********************",
-            "thumbnail": "uploads/contents/2025-12-07T01:57:42.275Z-538175537.jpeg",
-            "created": "2025-12-07T00:58:16.444Z",
+            "id": "693cfa10cf74fba8da5b5e7c",
+            "title": "buruh pabrik kulonprogo",
+            "content": "hidden",
+            "thumbnail": "uploads/posts/2025-12-13T05:46:32.553Z-515117181.jpeg",
+            "createdAt": "2025-12-13T05:30:56.495Z",
             "author": {
-                "_id": "6934ce33d68123091a3908f0",
-                "name": "adipati suryanegara"
+                "_id": "693cf7e9cf74fba8da5b5e75",
+                "name": "nadin aminah"
             }
         }
     ]
@@ -373,12 +369,13 @@
 ```
 <br><br>
 
-> ### Update User Role By ID
-- **Endpoint** : `PATCH /user/role/id_user`
+> ### Update One User Role By ID
+- **Endpoint** : `PATCH /api/account/user/role/id_user`
+- [Return to the link list](#link-list-)
 ##### Request Body :
 ```json
 {
-  " role" : "user"
+  " role" : "user" // admin, user, guest
 }
 ```
 ##### Response Success : 
@@ -387,9 +384,11 @@
     "success": true,
     "message": "success : user role successfully updated",
     "data": {
-        "user": "adipati suryanegara",
+        "name": "nadin aminah",
+        "username": "nadin",
+        "email": "nadin@mail.com",
         "role": "user",
-        "created": "2025-12-07T00:45:39.880Z"
+        "createdAt": "2025-12-13T05:21:45.123Z"
     }
 }
 ```

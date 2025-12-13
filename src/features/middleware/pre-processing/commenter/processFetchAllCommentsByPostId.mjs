@@ -17,26 +17,33 @@ export const processFetchAllCommentsByPostId = async (req, res, next) => {
             });
         }
 
+        // Check if postId is a valid ObjectId
         if (!mongoose.Types.ObjectId.isValid(postId)) return res.status(400).json({ 
             success: false,
             message : 'incorrect ID entered!'
         })
 
+        // Check if post exists and belongs to the user
         const post = await Post.findById(postId);
 
+        // ACCESS USER MUST BE THE OWNER OF THE POST TO VIEW COMMENTS
         if (post.user.toString() !== userId) {
             return res.status(403).json({ 
                 success: false,
-                message : 'Access denied. You do not have permission to view these comments.' 
+                message : 'forbidden : you do not have permission to view these comments.' 
             });
         }
 
+        // NEXT MIDDLEWARE
         req.data = postId
         next()
 
 
     } catch (err) {
         console.error(err)
-        return res.status(500).json({ error: 'Internal Server Error' });
+        return res.status(500).json({ 
+            success: false,
+            message : 'error in fetch comment by postId pre processing', 
+        });
     }
 }
