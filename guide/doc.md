@@ -7,7 +7,7 @@
     "comment" : "good post", // required
   }
   ```
-  ### Response Success : 
+  ##### Response Success : 
   ```json
   {
     "success": true,
@@ -28,7 +28,7 @@
 - **Endpoint** : `GET /api/commenter/id_content?limit=2&offset=0`
 - [Return to the link list](../README.md#link-list-)
 
-  ### Response Success : 
+  ##### Response Success : 
 
   ```json
   {
@@ -43,5 +43,37 @@
             "createdAt": "2025-12-13T06:00:00.481Z"
         }
     ]
+  }
+  ```
+
+  <br><br>
+
+    > ### Update User By ID
+- **Endpoint** : `PATCH /api/account/user/id_user`
+- [Return to the link list](../README.md#link-list-)
+
+  ##### Request Body :
+  ```json
+  {
+    "name" : "",
+    "gender" : "",
+    "birthday" : "23012004",
+    "avatar" : "image.jpg"
+  }
+  ```
+  ##### Response Success : 
+  ```json
+  {
+    "success": true,
+    "message": "success : user successfully updated",
+    "data": {
+        "name": "nadin aminah",
+        "username": "nadin",
+        "email": "nadin@mail.com",
+        "gender": "male",
+        "birthday": "23012004",
+        "createdAt": "2025-12-13T05:21:45.123Z",
+        "avatar": "uploads/users/2025-12-14T03:56:23.896Z-245960213.png"
+    }
   }
   ```

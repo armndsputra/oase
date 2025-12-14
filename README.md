@@ -15,7 +15,7 @@
  | Role  | Permissions |
 |-------|-------------|
 | ADMIN | delete user, fetch user, delete comment |
-| USER  | update user account, post/create content, update content, fetch content, fetch comment |
+| USER  | update user, post content, update content, fetch content, fetch comment |
 | GUEST | post comment |
 | GENERAL  | fetch content, fetch comment, login, register |
 
@@ -35,6 +35,7 @@
 - [ ] `GET /api/post/user` - fetch all user content 
 - [x] `GET /api/commenter/id_content/?limit=2&offset=0` - fetch all commenter by ID [GO](guide/doc.md#fetch-all-commenter-by-id)
 - [ ] `GET /api/commenter/reply` - reply commenter
+- [x] `PATCH /api/account/user/id_user` - update user by ID [GO](guide/doc.md#update-user-by-ID)
 
 > ***GUEST***
 - [x] `POST /api/commenter` - commenter [GO](guide/doc.md#commenter)
@@ -43,6 +44,8 @@
 - [x] `GET /api/post/?limit=0&offset=0` - fetch all content [GO](#fetch-all-content)
 - [x] `GET /api/post/id_content` - fetch one content by ID [GO](#fetch-one-content-by-id)
 - [x] `POST /api/post/keywords?limit=0&offset=0` - fetch all content by keywords [GO](#fetch-all-content-by-keywords)
+- [x] `POST /api/account/register` - register user [GO](#register)
+- [x] `POST /api/account/login` - login user [GO](#login)
   
 
 
@@ -68,6 +71,7 @@
 
 > ### Register
 - **Endpoint** : `POST /api/account/register`
+-  [Return to the link list](#link-list-)
   ##### Request Body :
   ```json
   {
@@ -105,6 +109,7 @@
 
 > ### Login
 - **Endpoint** : `POST /api/account/login`
+-  [Return to the link list](#link-list-)
 
 ##### Request Body :
 ```json
