@@ -29,8 +29,8 @@
 - [ ] `DELETE /api/commenter/id_commenter` - delete one comment by ID
 
 > ***USER***
-- [x] `POST /api/postal` - post content [GO](#posting-content)
-- [x] `DELETE /api/postal/id_content` - delete one content by ID [GO](#delete-one-content-by-id)
+- [x] `POST /api/post` - post content [GO](#posting-content)
+- [x] `DELETE /api/post/id_content` - delete one content by ID [GO](#delete-one-content-by-id)
 - [x] `PATCH /api/post/id_content` - update one content by ID [GO](#update-content)
 - [ ] `GET /api/post/user` - fetch all user content 
 - [x] `GET /api/commenter/id_content/?limit=2&offset=0` - fetch all commenter by ID [GO](guide/doc.md#fetch-all-commenter-by-id)
@@ -380,7 +380,7 @@
 ##### Request Body :
 ```json
 {
-  " role" : "user" // admin, user, guest
+  "role" : "user" // admin, user, guest
 }
 ```
 ##### Response Success : 
