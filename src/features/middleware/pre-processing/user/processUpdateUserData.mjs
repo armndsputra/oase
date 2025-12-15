@@ -11,7 +11,7 @@ export const processUpdateUserData = async ( req, res, next) => {
     try {
 
         // ACCESS UPDATE USER
-        const _id = req.decode.id
+        const _id = req.decoded.id
 
         if (!req.body) return res.status(422).json({ 
             success: false,

@@ -7,7 +7,7 @@ export const login = async ( req, res ) => {
     try {
 
         // 1. fetch data has been verifed
-        const { id, role, tempPassword, password } = req.processLoginData
+        const { id, username, role, tempPassword, password } = req.processLoginData
 
         // 2. check password and tempPassword
         const verifyPasword = await bcrypt.compare(tempPassword, password)
@@ -21,6 +21,7 @@ export const login = async ( req, res ) => {
         // 3. set jwt and print data
         jwt.sign({ 
             id,
+            username,
             role
         }, process.env.JWT_KEY, { expiresIn: process.env.JWT_EXPIRES }, function(err, token) {
             if (err) return console.error(err)

@@ -13,7 +13,7 @@ export const loginAccess = async (req, res ,next) => {
         }
 
         // 3. verify token jwt
-        jwt.verify(token, process.env.JWT_KEY, function (err, decode) {
+        jwt.verify(token, process.env.JWT_KEY, function (err, decoded) {
             if (err) {
                 // 3.1 if token is expired next to login page
                 // console.error(err)
@@ -23,7 +23,7 @@ export const loginAccess = async (req, res ,next) => {
             // 3.2 if token actice don't next to login page
             return res.status(200).json({ 
                 success: true,
-                message : 'access token is active and valid', user: decode 
+                message : 'access token is active and valid', user: decoded 
             })
         })
 

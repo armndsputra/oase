@@ -25,7 +25,7 @@ export const processDeleteContentData = async ( req, res, next ) => {
         })
 
         // MAIN ACCESS USER
-        if (req.decode.id !== result.user.toString()) return res.status(403).json({ 
+        if (req.decoded.id !== result.user.toString()) return res.status(403).json({ 
             success : false,
             message : 'forbidden : remove restricted access!'
         })

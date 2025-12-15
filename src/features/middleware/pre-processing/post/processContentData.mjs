@@ -14,7 +14,7 @@ export const processContentData = async ( req, res, next ) => {
     try {
 
         // MAIN ACCESS USER
-        const idUser = req.decode.id
+        const idUser = req.decoded.id
 
         // 1. Organize file paths into an array
         if (req.files && req.files.length > 0) {

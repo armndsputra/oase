@@ -10,7 +10,7 @@ export const processFetchAllCommentsByPostId = async (req, res, next) => {
         const { limit, offset } = req.query 
 
         const postId = req.params.id;
-        const userId= req.decode.id
+        const userId= req.decoded.id
         
         // Validate postId
         if (!postId) {

@@ -9,7 +9,7 @@ export const processDeleteUserData = async ( req, res, next ) => {
 
     try {
 
-        const { role } = req.decode
+        const { role } = req.decoded
         const id = req.params.id
 
         // 1. check id valid or not

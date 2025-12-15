@@ -58,7 +58,7 @@ export const processUpdateContentData = async ( req, res, next ) => {
 
         // 4. validate access user
         // MAIN ACCESS USER
-        if (req.decode.id !== result.user.toString()) {
+        if (req.decoded.id !== result.user.toString()) {
             // remove files
             await __file_remove(thumbnailPaths).then(result => {
                     console.log('operation result:', result)

@@ -49,6 +49,7 @@ export const processLoginData = async ( req, res, next ) => {
         // 5. data has been verified
         const processLoginData = {
             id : user._id.toString(),
+            username : user.username,
             role : user.role,
             password : user.password,
             tempPassword : password

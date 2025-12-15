@@ -16,7 +16,7 @@ export const mainAccessUser = async ( req, res, next ) => {
         }
 
         // 3. verify token jwt
-        jwt.verify(token, process.env.JWT_KEY, function (err, decode) {
+        jwt.verify(token, process.env.JWT_KEY, function (err, decoded) {
             if (err) {
                 // 3.1 if token is expired don't next to delete access
                 // console.error(err)
@@ -27,9 +27,9 @@ export const mainAccessUser = async ( req, res, next ) => {
                     })
             }
             // 3.2 if token active next to delete access
-            console.table(decode)
-            if (decode.role === 'user') {
-                req.decode = decode
+            console.table(decoded)
+            if (decoded.role === 'user') {
+                req.decoded = decoded
                 return next()
             } else return res.status(403).json({ 
                 success: false,
