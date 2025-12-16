@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken'
+import chalk from 'chalk';
 
 export const mainAccessAdmin = async ( req, res, next ) => {
 
@@ -28,7 +29,7 @@ export const mainAccessAdmin = async ( req, res, next ) => {
         jwt.verify(token, process.env.JWT_KEY, function (err, decoded) {
             if (err) {
                 // 3.1 if token is expired don't next to delete access
-                // console.error(err)
+                console.error(chalk.red('Token verification failed:'), chalk.yellow(err.message));
                 // console.error('token verification failed : ', err.message)
                     return res.status(400).json({
                         success: false,

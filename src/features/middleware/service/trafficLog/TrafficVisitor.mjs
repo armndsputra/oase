@@ -1,8 +1,9 @@
 export class TrafficVisitor {
 
-    constructor(max = 10) {
+    constructor(max) {
         this.data = []
         this.max = max
+    
     }
 
     add(visitor) {

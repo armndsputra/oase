@@ -27,7 +27,6 @@ router.use(async(req, res, next) => {
             return next()
         }
 
-
         let user = { id: 'unknown', username: 'unknown' }
         const token = req.header('Authorization')?.replace('Bearer ', '')
         
@@ -39,8 +38,8 @@ router.use(async(req, res, next) => {
                     username: decoded.username || user.username 
                 }
             } catch (err) {
+                console.error(chalk.red(`JWT verification failed for IP: ${clientIp}`), err.message)
                 console.warn(`Invalid JWT token from IP: ${clientIp}`)
-                return next()
             }
         }
 
@@ -71,7 +70,7 @@ router.use(async(req, res, next) => {
                 saveTrafficLog(trafficData.getNewest())
 
             } catch (err) {
-                console.error('Error saving traffic log:', err)
+                console.error(chalk.red('Error saving traffic log after response finished:'), err)
                 return next()
             }
             
@@ -80,7 +79,7 @@ router.use(async(req, res, next) => {
         next()
 
     } catch(err) {
-        console.error('Error in traffic log middleware:', err)
+        console.error(chalk.red('Error in traffic log middleware:'), err)
         return next()
     }
     

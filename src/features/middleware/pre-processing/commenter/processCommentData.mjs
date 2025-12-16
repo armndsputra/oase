@@ -3,7 +3,7 @@ import mongoose from "mongoose"
 import Post from '../../../models/postModel.mjs'
 import Commenter from '../../../models/commenterModel.mjs'
 
-export const proccessCommentData = async ( req, res, next) => {
+export const processCommentData = async ( req, res, next) => {
 
     try {
 

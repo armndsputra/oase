@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken'
+import chalk from 'chalk';
 
 export const mainAccessGuest = async ( req, res, next ) => {
 
@@ -20,7 +21,7 @@ export const mainAccessGuest = async ( req, res, next ) => {
             if (err) {
                 // 3.1 if token is expired don't next to delete access
                 // console.error(err)
-                console.error('token verification failed : ', err.message)
+                console.error(chalk.red('Token verification failed:'), chalk.yellow(err.message));
                     return res.status(400).json({
                         success: false,
                         message : 'forbidden : access token has been expired!'

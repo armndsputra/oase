@@ -15,6 +15,7 @@ import commenter from './src/features/routes/commenterRoute.mjs'
 
 // traffic monitoring
 import trafficLog from './src/features/routes/trafficLogRoute.mjs'
+import traffic from './src/features/routes/trafficRoute.mjs'
 
 // middlewares  
 app.use(morgan('dev'))
@@ -32,6 +33,8 @@ app.use('/api/account/user', user) // user route
 app.use('/api/account/login', login) // login route
 app.use('/api/account/register', register) // register route
 
+app.use('/api/traffic', traffic)
+
 // error handling
 app.use((req, res, next) => {
     const error = new Error('the page you are looking for was not found')
@@ -40,7 +43,7 @@ app.use((req, res, next) => {
 })
 
 app.use((err, req, res, next) => {
-    // console.log(err)
+    console.log(err)
     // console.error(err.message)
     // returndd
     if (err.message) {

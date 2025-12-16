@@ -2,7 +2,7 @@ export const saveTrafficLog = async (logData) => {
 
     try {
 
-        // console.log('show traffic log:', logData)
+        console.log('show traffic log:', logData)
         if (logData == null) {
             console.log('No log data to save.')
             return

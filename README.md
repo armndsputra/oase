@@ -14,8 +14,8 @@
 ### Role-based Features
  | Role  | Permissions |
 |-------|-------------|
-| ADMIN | delete user, fetch user, delete comment |
-| USER  | update user, post content, update content, fetch content, fetch comment |
+| ADMIN | delete user, fetch user, delete comment, traffic log |
+| USER  | update user, post content, update content, fetch content, fetch comment, traffic post |
 | GUEST | post comment |
 | GENERAL  | fetch content, fetch comment, login, register |
 
@@ -27,6 +27,7 @@
 - [x] `GET /api/account/user/id_user` - fetch one user by ID [GO](#fetch-one-user-by-id)
 - [x] `PATCH /api/account/user/role/id_user` - update one user role by ID [GO](#update-one-user-role-by-id)
 - [ ] `DELETE /api/commenter/id_commenter` - delete one comment by ID
+- [x] `GET /api/trafficlog - fetch all traffic log` [GO](guide/doc.md#fetch-all-traffic-log)
 
 > ***USER***
 - [x] `POST /api/post` - post content [GO](#posting-content)

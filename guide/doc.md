@@ -77,3 +77,31 @@
     }
   }
   ```
+
+  <br><br>
+
+  > ### Fetch All Traffic Log
+- **Endpoint** : `GET /api/trafficlog`
+- [Return to the link list](../README.md#link-list-)
+
+  ##### Response Success : 
+  ```json
+    {
+    "success": true,
+    "message": "success fetch all traffic logs",
+    "data": [
+        {
+            "_id": "6940e2bef7c544fb6243c6d1",
+            "ip": "::1",
+            "userID": "693bb530d613027903742a41",
+            "username": "adipati",
+            "userAgent": "PostmanRuntime/7.49.1",
+            "url": "/api/traffic?limit=2&offset=2",
+            "method": "GET",
+            "timestamp": "2025-12-16T04:40:30.708Z",
+            "createdAt": "2025-12-16T04:40:30.712Z",
+            "__v": 0
+        }
+    ]
+  }
+  ```
