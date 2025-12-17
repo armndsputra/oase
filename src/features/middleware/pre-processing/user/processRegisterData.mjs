@@ -9,6 +9,13 @@ export const processRegisterData = async ( req, res, next ) => {
 
     try {
 
+        if ( !req.body ) {
+            return res.status(400).json({
+                success : false,
+                message : 'no data provided!'
+            })
+        }
+
         // 1. fetch all data from request body
         const { name, username, confirm_password, email, password, gender, birthday } = req.body
 

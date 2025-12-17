@@ -26,8 +26,8 @@
 - [x] `DELETE /api/account/user/id_user` - delete one user by ID [GO](#delete-one-user-by-id)
 - [x] `GET /api/account/user/id_user` - fetch one user by ID [GO](#fetch-one-user-by-id)
 - [x] `PATCH /api/account/user/role/id_user` - update one user role by ID [GO](#update-one-user-role-by-id)
-- [ ] `DELETE /api/commenter/id_commenter` - delete one comment by ID
-- [x] `GET /api/trafficlog - fetch all traffic log` [GO](guide/doc.md#fetch-all-traffic-log)
+- [x] `DELETE /api/commenter/id_commenter` - delete one comment by ID [GO](guide/doc.md#delete-one-comment-by-id)
+- [x] `GET /api/traffic - fetch all traffic log` [GO](guide/doc.md#fetch-all-traffic-log)
 
 > ***USER***
 - [x] `POST /api/post` - post content [GO](#posting-content)

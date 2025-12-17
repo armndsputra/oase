@@ -81,7 +81,7 @@
   <br><br>
 
   > ### Fetch All Traffic Log
-- **Endpoint** : `GET /api/trafficlog`
+- **Endpoint** : `GET /api/traffic`
 - [Return to the link list](../README.md#link-list-)
 
   ##### Response Success : 
@@ -105,3 +105,25 @@
     ]
   }
   ```
+
+
+    <br><br>
+
+  > ### Delete One Comment By ID
+- **Endpoint** : `GET /api/commenter/id_comment`
+- [Return to the link list](../README.md#link-list-)
+  ##### Response Success : 
+
+```json
+{
+    "success": true,
+    "message": "comment deleted successfully",
+    "deletedComment": {
+        "id": "69425208734d0ad301996386",
+        "commenter": "69425066b235a2412428f040",
+        "content": "69424f1d83cdba82025151b5",
+        "comment": "this is a comment",
+        "createdAt": "2025-12-17T06:47:36.244Z"
+    }
+}
+```

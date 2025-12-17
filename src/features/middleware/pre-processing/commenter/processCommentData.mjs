@@ -37,7 +37,7 @@ export const processCommentData = async ( req, res, next) => {
         }
 
         // check for duplicate comment by same user on same post
-        const commenter = await Commenter.find({ commenter: req.decode.id, content: id, comment: comment.trim() })
+        const commenter = await Commenter.find({ commenter: req.decoded.id, content: id, comment: comment.trim() })
         if (commenter.length > 0) {
             return res.status(400).json({ 
                 success: false,
@@ -56,7 +56,7 @@ export const processCommentData = async ( req, res, next) => {
         
         // prepare processed comment data
         const proccessCommentData = {
-            commenter: req.decode.id,
+            commenter: req.decoded.id,
             content: id,
             comment: comment.trim(),
             createdAt: new Date() 

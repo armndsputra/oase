@@ -58,3 +58,39 @@ export const fetchCommenterByPostId = async (req, res) => {
         })
     }
 }
+
+// delete comment controller
+export const deleteCommenter = async ( req, res ) => {
+    try {
+
+        const commentId = req.id
+
+        const deletedComment = await Commenter.findByIdAndDelete(commentId)
+
+        if (!deletedComment) {
+            return res.status(404).json({
+                success : false,
+                message : 'comment not found'
+            })
+        }
+
+        return res.status(200).json({
+            success : true,
+            message : 'comment deleted successfully',
+            deletedComment : {
+                id : deletedComment._id,
+                commenter : deletedComment.commenter,
+                content : deletedComment.content,
+                comment : deletedComment.comment,
+                createdAt : deletedComment.createdAt
+            }
+        })
+
+    } catch ( err ) {
+        console.error(err)
+        res.status(500).json({
+            success : false,
+            message : 'error deleting comment'
+        })
+    }
+}
