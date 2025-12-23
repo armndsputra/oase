@@ -63,23 +63,28 @@ import {
   processFetchAllContentByUserId
 } from '../middleware/pre-processing/index.mjs'
 
-// service
-import { mainAccessUser } from '../middleware/service/mainAccessUser.mjs'
+
+// services
+import { AccessControlService } from '../middleware/service/accessControl/AccessControlService.mjs'
+
+const accessControlService = new AccessControlService()
+
+const user = accessControlService.allowAccess('user')
 
 // fetch all
 router.get('/', processFetchAllContentData, fetchAllContent)
 
 // fetch all post by user ID
-router.get('/user', mainAccessUser, processFetchAllContentByUserId, fetchAllContentByUserId)
+router.get('/user', user, processFetchAllContentByUserId, fetchAllContentByUserId)
 
 // save
-router.post('/',mainAccessUser, upload.array('thumbnail'), processContentData, saveContent)
+router.post('/',user, upload.array('thumbnail'), processContentData, saveContent)
 
 // delete
-router.delete('/:id', mainAccessUser, processDeleteContentData, deleteContent)
+router.delete('/:id', user, processDeleteContentData, deleteContent)
 
 // update
-router.patch('/:id',mainAccessUser, upload.array('thumbnail'), processUpdateContentData, updateContent)
+router.patch('/:id',user, upload.array('thumbnail'), processUpdateContentData, updateContent)
 
 // fetch data by id
 router.get('/:id', processFetchContentDataByID, fetchContentByID)

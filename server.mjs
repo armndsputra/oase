@@ -1,6 +1,6 @@
 import { createServer } from 'node:http'
 import app from './app.mjs';
-import { connectMongodb } from './configs/mongodb.mjs'
+import { connectMongodb } from './config/mongodb.mjs'
 
 const port = process.env.PORT || 3000
 

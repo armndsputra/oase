@@ -8,9 +8,13 @@ import { processFetchAllTrafficData } from '../middleware/pre-processing/index.m
 import { fetchAllTrafficLogs } from '../controllers/trafficController.mjs'
 
 // services
-import { mainAccessAdmin } from '../middleware/service/mainAccessAdmin.mjs'
+import { AccessControlService } from '../middleware/service/accessControl/AccessControlService.mjs'
+
+const accessControlService = new AccessControlService()
+
+const admin = accessControlService.allowAccess('admin')
 
 // register
-router.get('/', mainAccessAdmin, processFetchAllTrafficData, fetchAllTrafficLogs)
+router.get('/', admin, processFetchAllTrafficData, fetchAllTrafficLogs)
 
 export default router

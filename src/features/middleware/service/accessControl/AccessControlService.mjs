@@ -30,6 +30,7 @@ export class AccessControlService {
                 }
                 
                 jwt.verify(token, process.env.JWT_KEY, function (err, decoded) {
+
                     if (err) {
                         // 3.1 if token is expired don't next to delete access
                         console.error(chalk.red('Token verification failed:'), chalk.yellow(err.message));
@@ -53,8 +54,11 @@ export class AccessControlService {
             
 
             } catch (err) {
-                console.error()
-                return res.status(500).json({ message: '' })
+                console.error(err)
+                return res.status(500).json({ 
+                    success: false,
+                    message: 'error in access control middleware', 
+                })
             }
 
         }
