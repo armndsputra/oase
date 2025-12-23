@@ -42,5 +42,5 @@ export const _file_remove = async (filePaths) => {
         success: allSuccessful,
         message: allSuccessful ? 'all files processed successfully' : 'some files could not be processed',
         results: formattedResults
-    };
-};
+    }
+}

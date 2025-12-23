@@ -5,7 +5,9 @@ import morgan from 'morgan'
 import pkg from 'body-parser'
 const {urlencoded , json} = pkg
 import 'dotenv/config'
+import chalk from 'chalk'
 
+// -------------------------- ROUTES IMPORTS --------------------------
 // routes
 import post from'./src/features/routes/postRoute.mjs'
 import user from'./src/features/routes/userRoute.mjs'
@@ -13,12 +15,16 @@ import register from './src/features/routes/registerRoute.mjs'
 import login from './src/features/routes/loginRoute.mjs'
 import commenter from './src/features/routes/commenterRoute.mjs'
 
+import gallery from './src/features/routes/galleryRoute.mjs'
+
 // traffic monitoring
 import trafficLog from './src/features/routes/trafficLogRoute.mjs'
 import traffic from './src/features/routes/trafficRoute.mjs'
 
 // database statistics
 import database from './src/features/routes/databaseStatsRoute.mjs'
+
+// -------------------------- END OF ROUTES IMPORTS --------------------------
 
 // middlewares  
 app.use(morgan('dev'))
@@ -30,6 +36,8 @@ app.use(trafficLog)
 
 // routes
 app.use('/api/post', post) // post route
+app.use('/api/upload/gallery', gallery) // gallery images static route
+
 app.use('/api/commenter', commenter) // commenter route
 
 app.use('/api/account/user', user) // user route
@@ -49,8 +57,17 @@ app.use((req, res, next) => {
 })
 
 app.use((err, req, res, next) => {
-    console.log(err)
-    // console.error(err.message)
+    // console.log(err)
+    // console.error(chalk.red(err.stack))
+    console.log('----- error handler called -----')
+    console.error(chalk.red(err.message))
+    console.log('------------------------------')
+    if (err.message === 'File too large') {
+        return res.status(400).json({
+            success : false,
+            message : 'file is too large!. Max 1MB!'
+        })
+    }
     // returndd
     if (err.message) {
         return res.status(err.status || 500).json({

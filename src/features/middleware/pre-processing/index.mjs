@@ -24,3 +24,6 @@ export * from './commenter/processFetchAllCommentData.mjs'
 
 // traffic management
 export * from './traffic/processFetchAllTrafficData.mjs'
+
+// gallery management
+export * from './gallery/processSaveGalleryData.mjs'
